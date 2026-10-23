@@ -3,12 +3,7 @@ function initCyberParticles(canvasId) {
   const canvas = document.getElementById(canvasId);
   if (!canvas) return;
 
-  // Skip completely on low-powered mobile devices to save 100% CPU/battery
-  if (window.innerWidth < 768) {
-    canvas.style.display = 'none';
-    return;
-  }
-
+  const isMobile = window.innerWidth < 768;
   const ctx = canvas.getContext('2d', { alpha: true });
   let width, height;
   let particles = [];
@@ -23,16 +18,16 @@ function initCyberParticles(canvasId) {
 
   function createParticles() {
     particles = [];
-    // Strict cap: maximum 28 particles (down from 150+) to eliminate O(N^2) lag
-    const count = Math.min(28, Math.max(12, Math.floor((width * height) / 45000)));
+    // 16 particles on mobile, up to 28 on desktop for smooth 60fps
+    const count = isMobile ? 16 : Math.min(28, Math.max(12, Math.floor((width * height) / 45000)));
     const colors = ['#5E2784', '#7E33B8', '#C48822'];
     
     for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
+        vx: (Math.random() - 0.5) * (isMobile ? 0.35 : 0.5),
+        vy: (Math.random() - 0.5) * (isMobile ? 0.35 : 0.5),
         radius: Math.random() * 1.5 + 1,
         color: colors[i % colors.length]
       });

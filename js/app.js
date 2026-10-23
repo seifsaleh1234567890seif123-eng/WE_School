@@ -1922,11 +1922,8 @@ function scrollToTop() {
 let revealObserver = null;
 
 function initScrollReveal() {
-  // On mobile devices (<=768px), immediately reveal all sections to avoid scroll jank/lag
-  if (typeof IntersectionObserver === 'undefined' || window.innerWidth <= 768) {
-    document.querySelectorAll('.section-header, .perk-card, .school-card, .news-card, .calc-card, .partner-logo-item, .about-image-wrapper, .spec-card-main, .hero-stats').forEach(el => {
-      el.classList.add('is-revealed');
-    });
+  if (typeof IntersectionObserver === 'undefined') {
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => el.classList.add('is-revealed'));
     return;
   }
 
@@ -1938,8 +1935,8 @@ function initScrollReveal() {
       }
     });
   }, {
-    threshold: 0.08,
-    rootMargin: '0px 0px -40px 0px'
+    threshold: 0.05,
+    rootMargin: '0px 0px -20px 0px'
   });
 
   refreshScrollReveal();

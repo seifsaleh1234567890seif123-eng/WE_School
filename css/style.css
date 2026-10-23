@@ -2718,65 +2718,40 @@ select option:checked {
     gap: 2.2rem;
   }
 
-  /* Mobile Sticky Bottom Action Bar */
+  /* Hide Mobile Sticky Bottom Action Bar per user request */
   .mobile-sticky-bar {
-    display: flex !important;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1050;
-    background: rgba(12, 7, 24, 0.95);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-top: 1px solid var(--border-active);
-    padding: 0.55rem 0.8rem;
-    gap: 0.6rem;
-    box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.7);
-  }
-
-  .mobile-sticky-btn {
-    flex: 1;
-    min-height: 44px;
-    font-size: 0.88rem;
-    font-weight: 700;
-    padding: 0.5rem 0.6rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.35rem;
-    border-radius: var(--radius-md);
+    display: none !important;
   }
 
   body {
-    padding-bottom: 65px !important;
+    padding-bottom: 0 !important;
   }
 
-  /* Mobile Floating Actions positioned above sticky bar */
+  /* Mobile Floating Actions positioned comfortably at bottom */
   .floating-actions {
-    bottom: 74px !important;
-    inset-inline-end: 12px;
+    bottom: 20px !important;
+    inset-inline-end: 14px;
     gap: 0.5rem;
     pointer-events: none;
     z-index: 1040;
   }
 
   .fab {
-    width: 38px;
-    height: 38px;
-    font-size: 0.95rem;
+    width: 42px;
+    height: 42px;
+    font-size: 1.05rem;
     pointer-events: auto;
   }
 
   /* ==========================================================================
-     Android & Mobile Ultra-Smooth 60-120fps Hardware Optimization
+     Android & Mobile Smooth 60-120fps Hardware Optimization + Beautiful Animations
      ========================================================================== */
   *, *::before, *::after {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
   }
 
-  /* Solid crisp backgrounds for 0ms rasterization lag */
+  /* Crisp high-contrast backgrounds for 0ms rasterization lag */
   .site-header {
     background: #FFFFFF !important;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06) !important;
@@ -2784,11 +2759,6 @@ select option:checked {
 
   .nav-menu {
     background: #FFFFFF !important;
-  }
-
-  .mobile-sticky-bar {
-    background: #FFFFFF !important;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08) !important;
   }
 
   .glass-card,
@@ -2799,21 +2769,24 @@ select option:checked {
   .faq-item {
     background: #FFFFFF !important;
     box-shadow: 0 2px 8px rgba(94, 39, 132, 0.06) !important;
-    transform: none !important;
   }
 
-  /* Disable battery/GPU draining infinite animations on mobile */
+  /* Beautiful floating animations active on mobile */
   .about-badge-floating,
-  .card-top-pill .badge,
-  .hero-card-featured {
-    animation: none !important;
+  .card-top-pill .badge {
+    animation: gentleFloatY 4s ease-in-out infinite !important;
   }
 
-  /* Instant reveal on mobile to eliminate scroll jank */
+  /* Smooth GPU-accelerated Scroll Reveal on Mobile */
   .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal-on-scroll.is-revealed {
     opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
+    transform: translateY(0) !important;
   }
 
   /* Modern Offscreen Section Lazy Rendering (Chromium / Android Blink Engine) */
