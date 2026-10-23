@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=5.0">
+  <link rel="stylesheet" href="css/style.css?v=6.0">
 </head>
 <body>
 
@@ -100,6 +100,7 @@
         setTimeout(function() {
           if (portal) {
             portal.style.display = 'none';
+            try { portal.remove(); } catch(e) {}
           }
         }, 550);
       }
@@ -358,7 +359,7 @@
           </div>
 
           <div class="hero-video-trigger" onclick="document.getElementById('school-video').scrollIntoView({behavior:'smooth'})" title="اضغط لمشاهدة فيديو المدرسة الرسمي">
-            <img src="assets/images/hero-bg.webp" alt="WE Applied Technology School Students" style="width: 100%; height: 180px; object-fit: cover;">
+            <img src="assets/images/hero-bg.webp" alt="WE Applied Technology School Students" style="width: 100%; height: 180px; object-fit: cover;" loading="lazy" decoding="async">
             <div class="hero-video-play-overlay">
               <span class="hero-play-icon">▶</span>
               <span class="hero-play-text">شاهد فيديو المدرسة الرسمي 🎬</span>
@@ -405,7 +406,7 @@
       <div class="about-grid">
         <!-- Image with floating card -->
         <div class="about-image-wrapper">
-          <img src="assets/images/students-lab.webp" alt="Students in WE Technology Labs">
+          <img src="assets/images/students-lab.webp" alt="Students in WE Technology Labs" loading="lazy" decoding="async">
           <div class="about-badge-floating">
             <div style="font-size: 2rem;">🎖️</div>
             <div>
@@ -1010,8 +1011,8 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/schools-data.js?v=5.0"></script>
-  <script src="js/particles.js?v=5.0"></script>
-  <script src="js/app.js?v=5.0"></script>
+  <script src="js/schools-data.js?v=6.0"></script>
+  <script src="js/particles.js?v=6.0"></script>
+  <script src="js/app.js?v=6.0"></script>
 </body>
 </html>

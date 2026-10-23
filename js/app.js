@@ -1889,17 +1889,20 @@ function initEventListeners() {
     });
   }
 
+  let scrollTicking = false;
   window.addEventListener('scroll', () => {
-    const header = document.querySelector('.site-header');
-    const fabTop = document.getElementById('fab-scroll-top');
-    if (window.scrollY > 60) {
-      header?.classList.add('scrolled');
-      fabTop?.classList.add('visible');
-    } else {
-      header?.classList.remove('scrolled');
-      fabTop?.classList.remove('visible');
+    if (!scrollTicking) {
+      window.requestAnimationFrame(() => {
+        const header = document.querySelector('.site-header');
+        const fabTop = document.getElementById('fab-scroll-top');
+        const isScrolled = window.scrollY > 60;
+        header?.classList.toggle('scrolled', isScrolled);
+        fabTop?.classList.toggle('visible', isScrolled);
+        scrollTicking = false;
+      });
+      scrollTicking = true;
     }
-  });
+  }, { passive: true });
 
   const searchInput = document.getElementById('school-search-input');
   if (searchInput) {
@@ -1919,8 +1922,11 @@ function scrollToTop() {
 let revealObserver = null;
 
 function initScrollReveal() {
-  if (typeof IntersectionObserver === 'undefined') {
-    document.querySelectorAll('.reveal-on-scroll').forEach(el => el.classList.add('is-revealed'));
+  // On mobile devices (<=768px), immediately reveal all sections to avoid scroll jank/lag
+  if (typeof IntersectionObserver === 'undefined' || window.innerWidth <= 768) {
+    document.querySelectorAll('.section-header, .perk-card, .school-card, .news-card, .calc-card, .partner-logo-item, .about-image-wrapper, .spec-card-main, .hero-stats').forEach(el => {
+      el.classList.add('is-revealed');
+    });
     return;
   }
 
@@ -1980,11 +1986,18 @@ function initScrollProgressBar() {
   const progressBar = document.getElementById('scroll-progress-bar');
   if (!progressBar) return;
 
+  let ticking = false;
   window.addEventListener('scroll', () => {
-    const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-    if (totalHeight > 0) {
-      const progress = (window.scrollY / totalHeight) * 100;
-      progressBar.style.width = Math.min(100, Math.max(0, progress)) + '%';
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        if (totalHeight > 0) {
+          const progress = (window.scrollY / totalHeight) * 100;
+          progressBar.style.width = Math.min(100, Math.max(0, progress)) + '%';
+        }
+        ticking = false;
+      });
+      ticking = true;
     }
   }, { passive: true });
 }
@@ -2182,6 +2195,25 @@ function initHeroVideoPlayer() {
     }
   };
   tryAutoplay();
+
+  // Smart GPU/Battery saver: pause video when scrolled out of view!
+  if ('IntersectionObserver' in window) {
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+          if (!vid.paused) {
+            vid.pause();
+            vid.dataset.wasAutoPlaying = 'true';
+          }
+        } else {
+          if (vid.dataset.wasAutoPlaying === 'true') {
+            vid.play().catch(() => {});
+          }
+        }
+      });
+    }, { threshold: 0.15 });
+    videoObserver.observe(vid);
+  }
 
   // If browser policy blocks autoplay before user gesture, play on first interaction
   const onFirstInteraction = () => {

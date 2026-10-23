@@ -2767,6 +2767,64 @@ select option:checked {
     font-size: 0.95rem;
     pointer-events: auto;
   }
+
+  /* ==========================================================================
+     Android & Mobile Ultra-Smooth 60-120fps Hardware Optimization
+     ========================================================================== */
+  *, *::before, *::after {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Solid crisp backgrounds for 0ms rasterization lag */
+  .site-header {
+    background: #FFFFFF !important;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06) !important;
+  }
+
+  .nav-menu {
+    background: #FFFFFF !important;
+  }
+
+  .mobile-sticky-bar {
+    background: #FFFFFF !important;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .glass-card,
+  .school-card,
+  .perk-card,
+  .calc-card,
+  .news-card,
+  .faq-item {
+    background: #FFFFFF !important;
+    box-shadow: 0 2px 8px rgba(94, 39, 132, 0.06) !important;
+    transform: none !important;
+  }
+
+  /* Disable battery/GPU draining infinite animations on mobile */
+  .about-badge-floating,
+  .card-top-pill .badge,
+  .hero-card-featured {
+    animation: none !important;
+  }
+
+  /* Instant reveal on mobile to eliminate scroll jank */
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Modern Offscreen Section Lazy Rendering (Chromium / Android Blink Engine) */
+  .schools-section,
+  .comparison-section,
+  .news-section,
+  .faq-section,
+  .admission-section {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 650px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -3162,7 +3220,6 @@ select option:checked {
   opacity: 0;
   transform: translateY(35px);
   transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
 }
 
 .reveal-on-scroll.is-revealed {
@@ -3247,7 +3304,7 @@ select option:checked {
 }
 
 .hero-card-featured {
-  animation: glowAuraPulse 6s ease-in-out infinite;
+  box-shadow: 0 10px 25px -5px rgba(94, 39, 132, 0.12), 0 4px 10px rgba(0, 0, 0, 0.04);
 }
 
 /* Smooth Specialization Swap Transition */
