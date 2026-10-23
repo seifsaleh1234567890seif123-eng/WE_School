@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title data-i18n="siteTitle">مدارس WE للتكنولوجيا التطبيقية | المصرية للاتصالات</title>
+  
+  <!-- Meta Descriptions & SEO -->
+  <meta name="description" content="البوابة الرسمية المتطورة لمدارس WE للتكنولوجيا التطبيقية في 27 محافظة - الأولى في مصر المتخصصة في ديجيتال ارك والعمارة الرقمية والأمن السيبراني والذكاء الاصطناعي وتطوير البرمجيات بشراكة وزارة الاتصالات ووزارة التربية والتعليم والمصرية للاتصالات WE.">
+  <meta name="keywords" content="مدارس WE, ديجيتال ارك, مدارس التكنولوجيا التطبيقية, المصرية للاتصالات, الأمن السيبراني, الذكاء الاصطناعي, العمارة الرقمية, تنسيق مدارس we, عناوين مدارس we">
+  <link rel="icon" type="image/png" href="assets/images/logo-ar.png">
+
+  <!-- Preconnect Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css?v=3.0">
+</head>
+<body>
+
+  <!-- Cinematic Futuristic Cyber Entrance Portal -->
+  <div id="cyber-intro-portal" class="cyber-intro-overlay">
+    <div class="shutter shutter-top"></div>
+    <div class="shutter shutter-bottom"></div>
+    <div class="intro-grid-fx"></div>
+
+    <div class="intro-stage">
+      <!-- Cyber Hologram Orb & Energy Rings -->
+      <div class="hologram-container">
+        <div class="energy-ring ring-outer"></div>
+        <div class="energy-ring ring-mid"></div>
+        <div class="energy-ring ring-inner"></div>
+        <div class="laser-scanner"></div>
+        <div class="logo-wrapper">
+          <img src="assets/images/logo-ar.png" alt="WE ATS Logo" class="intro-logo">
+        </div>
+      </div>
+
+      <!-- Sci-Fi System Status Readout -->
+      <div class="intro-status-box">
+        <div class="intro-badge">
+          <span class="live-dot"></span>
+          <span>WE APPLIED TECHNOLOGY SCHOOLS</span>
+        </div>
+        <div class="intro-console-text" id="intro-console">
+          INITIALIZING CYBER INFRASTRUCTURE...
+        </div>
+        <div class="intro-meter-container">
+          <div class="intro-meter-bar" id="intro-progress-bar"></div>
+        </div>
+        <div class="intro-percentage-row">
+          <span class="intro-tech-sub">EGYPT 27 GOVERNORATES // 2026</span>
+          <span class="intro-pct" id="intro-percentage">0%</span>
+        </div>
+      </div>
+
+      <!-- Quick Skip Button -->
+      <button class="intro-skip-btn" onclick="finishIntroImmediately()" id="intro-skip-btn" aria-label="Skip Intro">
+        <span>تخطي</span> ⏩
+      </button>
+    </div>
+
+    <!-- Shockwave Flash Burst -->
+    <div class="intro-shockwave" id="intro-shockwave"></div>
+  </div>
+
+  <!-- Glowing Scroll Progress Bar -->
+  <div id="scroll-progress-bar" class="scroll-progress-bar"></div>
+
+  <!-- Sticky Cyber Header (Collision-Proof & High-Contrast Logo) -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="#home" class="brand-logo" aria-label="WE Applied Technology Schools">
+        <img src="assets/images/logo-ar.png" alt="WE Applied Technology Schools" id="header-logo" class="header-logo-img">
+      </a>
+
+      <!-- Desktop & Mobile Nav Drawer -->
+      <nav class="nav-menu" id="main-nav-menu">
+        <div class="mobile-nav-top-cta">
+          <button class="btn btn-primary" onclick="openApplicationModal()" style="width: 100%; font-size: 1.02rem; padding: 0.85rem; font-weight: 800; box-shadow: 0 4px 18px rgba(94, 39, 132, 0.35);">
+            🚀 قدّم الآن (تسجيل طلب جديد 2026)
+          </button>
+        </div>
+        <a href="#home" class="nav-link active" data-i18n="navHome">الرئيسية</a>
+        <a href="#about" class="nav-link" data-i18n="navAbout">عن المدارس</a>
+        <a href="#specializations" class="nav-link" data-i18n="navSpecs">التخصصات</a>
+        <a href="#schools" class="nav-link" data-i18n="navSchools">الفروع</a>
+        <a href="#admission" class="nav-link" data-i18n="navAdmission">شروط القبول</a>
+        <a href="#comparison" class="nav-link" data-i18n="navComparison">لماذا WE؟</a>
+        <a href="#school-video" class="nav-link" data-i18n="navVideo">فيديو المدرسة</a>
+        <a href="#news" class="nav-link" data-i18n="navNews">الأخبار</a>
+        <a href="#faq" class="nav-link" data-i18n="navFaq">الأسئلة الشائعة</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="nav-actions">
+        <!-- Language Switcher -->
+        <button class="btn btn-outline btn-sm lang-btn" onclick="toggleLanguage()" id="lang-btn" title="Toggle Language">
+          🌐 <span id="lang-toggle-text">English</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button class="icon-btn theme-toggle-btn" onclick="toggleTheme()" id="theme-btn" title="Toggle Dark/Light Mode">
+          <span id="theme-icon">🌙</span>
+        </button>
+
+        <!-- Track CTA (Desktop) -->
+        <button class="btn btn-outline btn-sm nav-track-desktop-btn" onclick="openTrackingModal()" title="Track Application Status">
+          🔍 <span data-i18n="btnTrackApp">تتبع طلبك</span>
+        </button>
+
+        <!-- Apply CTA (Desktop & Mobile) -->
+        <button class="btn btn-primary btn-sm nav-apply-btn" onclick="openApplicationModal()" data-i18n="btnApplyNow">
+          قدّم الآن 🚀
+        </button>
+
+        <!-- Mobile Drawer Toggle -->
+        <button class="icon-btn menu-toggle" id="menu-toggle-btn" aria-label="Toggle Menu">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Top Full-Width Official School Video Hero Banner (Direct from we-ats.com) -->
+  <section class="top-fullwidth-video-section" id="school-video">
+    <div class="fullwidth-video-container">
+      <video 
+        id="top-hero-video" 
+        src="assets/videos/school-hero.mp4" 
+        autoplay 
+        loop 
+        muted 
+        playsinline 
+        preload="auto" 
+        poster="assets/images/students-lab.webp"
+        class="top-hero-video-player">
+        <source src="assets/videos/school-hero.mp4" type="video/mp4">
+        <source src="https://we-ats.com/wp-content/uploads/2024/08/video-1.mp4" type="video/mp4">
+        متصفحك لا يدعم تشغيل الفيديو المباشر.
+      </video>
+
+      <!-- Center Big Glowing Play Button (Displays when video is paused) -->
+      <div class="video-center-play-overlay" id="video-center-play" onclick="toggleHeroVideoPlay()">
+        <div class="center-play-circle" title="تشغيل الفيديو">
+          <svg class="play-svg-icon" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="6 3 20 12 6 21 6 3"></polygon>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Minimalist Cyber Floating Controls (Sound & Play/Pause ONLY) -->
+      <div class="minimal-video-controls" id="hero-video-controls">
+        <!-- Play / Pause Toggle Button -->
+        <button class="vid-cyber-btn vid-play-btn" id="vid-play-btn" onclick="toggleHeroVideoPlay()" title="إيقاف / تشغيل الفيديو">
+          <span id="vid-play-icon">⏸️</span>
+          <span id="vid-play-text">إيقاف الفيديو</span>
+        </button>
+
+        <!-- Audio Toggle Button -->
+        <button class="vid-cyber-btn vid-sound-btn" id="vid-sound-btn" onclick="toggleHeroVideoAudio()" title="تشغيل / كتم الصوت">
+          <span id="vid-sound-icon">🔇</span>
+          <span id="vid-sound-text">تشغيل الصوت</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Video Quick Highlights Strip -->
+    <div class="top-video-info-strip">
+      <div class="container top-video-info-grid">
+        <div class="top-video-info-item">
+          <span class="info-icon">🏛️</span>
+          <div>
+            <div class="info-title" data-i18n="videoMeta1Title">شراكة حكومية دولية</div>
+            <div class="info-sub" data-i18n="videoMeta1Sub">وزارة الاتصالات • وزارة التربية والتعليم • WE</div>
+          </div>
+        </div>
+        <div class="top-video-info-item">
+          <span class="info-icon">🌐</span>
+          <div>
+            <div class="info-title" data-i18n="videoMeta2Title">تغطية شاملة</div>
+            <div class="info-sub" data-i18n="videoMeta2Sub">27 محافظة • 5 تخصصات تكنولوجية معتمدة</div>
+          </div>
+        </div>
+        <div class="top-video-info-item">
+          <span class="info-icon">📜</span>
+          <div>
+            <div class="info-title" data-i18n="videoMeta3Title">اعتماد وتوظيف</div>
+            <div class="info-sub" data-i18n="videoMeta3Sub">شهادات دولية • أولوية تعيين للمتفوقين</div>
+          </div>
+        </div>
+        <div class="top-video-info-item">
+          <a href="https://youtube.com/@weappliedtechnologyyschools?si=NL1gel4t6ejfIMEC" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="width: 100%; border-color: #ff0033; color: #fff; background: rgba(255, 0, 51, 0.12); justify-content: center;">
+            <span>قناة يوتيوب الرسمية</span> 🔴
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="home">
+    <canvas id="hero-canvas" class="cyber-canvas"></canvas>
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+
+    <div class="container hero-content">
+      <!-- Left Content Column -->
+      <div class="hero-text-col">
+        <div class="badge" style="margin-bottom: 1rem;">
+          <span class="pulse-dot"></span>
+          <span data-i18n="heroBadge">الأولى والأكبر في مصر والشرق الأوسط 🇪🇬</span>
+        </div>
+
+        <h1 class="hero-title">
+          <span data-i18n="heroTitlePrefix">نصنع قادة</span><br>
+          <span class="text-gradient" data-i18n="heroTitleTech">التكنولوجيا الرقمية</span><br>
+          <span class="text-gradient-purple" data-i18n="heroTitleSuffix">والأمن السيبراني والذكاء الاصطناعي</span>
+        </h1>
+
+        <p class="hero-desc" data-i18n="heroDesc">
+          مدارس حكومية نموذجية بمعايير دولية بشراكة استراتيجية بين وزارة الاتصالات وتكنولوجيا المعلومات ووزارة التربية والتعليم والشركة المصرية للاتصالات WE، تؤهل خريجيها لكليات الهندسة والحاسبات وسوق العمل العالمي.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="hero-cta-group">
+          <button class="btn btn-primary" onclick="openApplicationModal()">
+            <span data-i18n="btnApplyNow">قدّم الآن 🚀</span>
+          </button>
+          <button class="btn btn-outline" onclick="openTrackingModal()">
+            <span data-i18n="btnTrackApp">استعلم عن حالة قبولك 🔍</span>
+          </button>
+          <a href="#admission-calc" class="btn btn-cyan">
+            <span data-i18n="btnCheckEligibility">احسب فرصتك للقبول 🎯</span>
+          </a>
+          <a href="#school-video" class="btn btn-outline" style="border-color: var(--we-purple-light); color: #fff;">
+            <span data-i18n="btnWatchVideo">فيديو المدرسة 🎬</span>
+          </a>
+          <button class="btn btn-outline" onclick="openQuizModal()">
+            <span data-i18n="btnStartQuiz">جرّب اختبار القدرات (IQ) 🧠</span>
+          </button>
+        </div>
+
+        <!-- Live Counters Grid (Mobile-Optimized & Contained) -->
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-num" data-target="27" data-prefix="" data-suffix="">27</div>
+            <div class="stat-label" data-i18n="statSchools">مدرسة تغطي 27 محافظة</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num" data-target="5200" data-prefix="+" data-suffix="">+5,200</div>
+            <div class="stat-label" data-i18n="statStudents">طالب وطالبة حالياً</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num" data-target="3400" data-prefix="+" data-suffix="">+3,400</div>
+            <div class="stat-label" data-i18n="statGraduates">خريج وخريجة مؤهلين</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num" data-target="100" data-prefix="" data-suffix="%">100%</div>
+            <div class="stat-label" data-i18n="statEmployment">فرص تدريب وتوظيف معتمدة</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Showcase Visual Card -->
+      <div class="hero-visual">
+        <div class="hero-card-featured">
+          <div class="card-top-pill">
+            <span class="badge" data-i18n="heroCardBadge">
+              ⚡ نظام دراسة 3 سنوات معتمد دولياً
+            </span>
+            <span class="pulse-dot"></span>
+          </div>
+
+          <div class="hero-video-trigger" onclick="document.getElementById('school-video').scrollIntoView({behavior:'smooth'})" title="اضغط لمشاهدة فيديو المدرسة الرسمي">
+            <img src="assets/images/hero-bg.webp" alt="WE Applied Technology School Students" style="width: 100%; height: 180px; object-fit: cover;">
+            <div class="hero-video-play-overlay">
+              <span class="hero-play-icon">▶</span>
+              <span class="hero-play-text">شاهد فيديو المدرسة الرسمي 🎬</span>
+            </div>
+            <div style="position: absolute; bottom: 8px; inset-inline-start: 8px; background: rgba(10, 6, 18, 0.85); backdrop-filter: blur(10px); padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.78rem; font-weight: 700; color: #fff; border: 1px solid var(--we-gold); z-index: 2;" data-i18n="heroCardImgText">
+              🏫 معامل متطورة وأحدث أجهزة التكنولوجيا
+            </div>
+          </div>
+
+          <h3 style="font-size: 1.18rem; font-weight: 800; margin-bottom: 0.5rem;" data-i18n="heroCardTitle">
+            تخصصات تواكب الثورة الصناعية الرابعة
+          </h3>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 1rem;" data-i18n="heroCardDesc">
+            دراسة عملية متقدمة تجمع بين مناهج وزارة التربية والتعليم والتدريب الميداني داخل سنترالات ومواقع الشركة المصرية للاتصالات WE.
+          </p>
+
+          <!-- 4 Specialization Pills (100% Translated & Overflow-Proof) -->
+          <div class="spec-mini-grid">
+            <div class="spec-mini-pill" onclick="selectSpecialization('digital-arc'); document.getElementById('specializations').scrollIntoView({behavior:'smooth'});" style="cursor: pointer;">
+              <img src="assets/images/spec-telecom.png" alt="Digital Arc">
+              <span data-i18n="heroPillArc">ديجيتال ارك</span>
+            </div>
+            <div class="spec-mini-pill" onclick="selectSpecialization('networks'); document.getElementById('specializations').scrollIntoView({behavior:'smooth'});" style="cursor: pointer;">
+              <img src="assets/images/spec-networks.png" alt="Cybersecurity">
+              <span data-i18n="heroPillCyber">الأمن السيبراني</span>
+            </div>
+            <div class="spec-mini-pill" onclick="selectSpecialization('web'); document.getElementById('specializations').scrollIntoView({behavior:'smooth'});" style="cursor: pointer;">
+              <img src="assets/images/spec-web.png" alt="Software Development">
+              <span data-i18n="heroPillDev">تطوير البرمجيات</span>
+            </div>
+            <div class="spec-mini-pill" onclick="selectSpecialization('ai'); document.getElementById('specializations').scrollIntoView({behavior:'smooth'});" style="cursor: pointer;">
+              <img src="assets/images/spec-ai.png" alt="AI & Data">
+              <span data-i18n="heroPillAi">الذكاء الاصطناعي</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section & Golden Perks -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <!-- Image with floating card -->
+        <div class="about-image-wrapper">
+          <img src="assets/images/students-lab.webp" alt="Students in WE Technology Labs">
+          <div class="about-badge-floating">
+            <div style="font-size: 2rem;">🎖️</div>
+            <div>
+              <div style="font-weight: 900; font-size: 1.1rem; color: var(--text-main);" data-i18n="aboutBadgeTitle">شهادة ثلاثية معتمدة</div>
+              <div style="font-size: 0.82rem; color: var(--text-secondary);" data-i18n="aboutBadgeSub">دبلوم فني + خبرة WE + شهادات Cisco وHuawei</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- About Content -->
+        <div>
+          <span class="badge" data-i18n="aboutTag">رؤية تعليمية رائدة</span>
+          <h2 style="font-size: clamp(1.9rem, 3.2vw, 2.7rem); font-weight: 900; margin: 0.8rem 0;" data-i18n="aboutTitle">
+            تعليم فني تكنولوجي بمعايير عالمية
+          </h2>
+          <p style="font-size: 1.05rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: 1.8rem;" data-i18n="aboutLead">
+            تأسست مدارس WE للتكنولوجيا التطبيقية عام 2020 كأول صرح متخصص في تكنولوجيا الاتصالات والمعلومات في مصر بهدف إعداد أجيال تمتلك المعرفة التطبيقية والشهادات الدولية المعتمدة لمواكبة الثورة الصناعية الرابعة.
+          </p>
+
+          <!-- Perks Grid -->
+          <div class="perks-grid">
+            <div class="perk-card">
+              <div class="perk-icon">📱</div>
+              <div>
+                <h4 class="perk-title" data-i18n="perk1Title">تابلت وزي مدرسي مجاناً</h4>
+                <p class="perk-desc" data-i18n="perk1Desc">توفير تابلت تعليمي حديث، والزي المدرسي وزي التدريب الميداني والعملي بدون أي رسوم.</p>
+              </div>
+            </div>
+
+            <div class="perk-card">
+              <div class="perk-icon">💰</div>
+              <div>
+                <h4 class="perk-title" data-i18n="perk2Title">مكافآت مالية شهرية</h4>
+                <p class="perk-desc" data-i18n="perk2Desc">يحصل الطالب على حافز ومكافأة مالية شهرية طوال فترة التدريب العملي والميداني.</p>
+              </div>
+            </div>
+
+            <div class="perk-card">
+              <div class="perk-icon">📜</div>
+              <div>
+                <h4 class="perk-title" data-i18n="perk3Title">شهادات دولية معتمدة</h4>
+                <p class="perk-desc" data-i18n="perk3Desc">شهادة الدبلوم الفني التقني المعتمد + شهادة خبرة من المصرية للاتصالات + شهادات كبرى شركات التكنولوجيا (Cisco, Huawei, AWS).</p>
+              </div>
+            </div>
+
+            <div class="perk-card">
+              <div class="perk-icon">🎓</div>
+              <div>
+                <h4 class="perk-title" data-i18n="perk4Title">مسارات جامعية مرموقة</h4>
+                <p class="perk-desc" data-i18n="perk4Desc">تأهيل مباشر للالتحاق بكليات الهندسة والحاسبات والذكاء الاصطناعي والجامعات التكنولوجية المتقدمة.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specializations Deep Dive -->
+  <section class="spec-section" id="specializations">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="specsTag">مسارات احترافية للمستقبل</span>
+        <h2 class="section-title" data-i18n="specsTitle">5 تخصصات تكنولوجية تواكب وظائف الغد</h2>
+        <p class="section-subtitle" data-i18n="specsSubtitle">
+          مناهج حديثة تم تصميمها بالتعاون مع أساتذة الجامعات والخبراء العالميين في مجالات العمارة الرقمية وهندسة البرمجيات والأمن السيبراني.
+        </p>
+      </div>
+
+      <!-- Interactive Spec Navigation Tabs (Swipeable on Mobile) -->
+      <div class="spec-tabs" id="spec-tabs-container"></div>
+
+      <!-- Main Spec Display Card (Dynamic) -->
+      <div id="spec-card-container"></div>
+    </div>
+  </section>
+
+  <!-- 27 Governorates Campuses Explorer -->
+  <section class="schools-section" id="schools">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="schoolsTag">تغطية شاملة لجمهورية مصر العربية</span>
+        <h2 class="section-title" data-i18n="schoolsTitle">مدارسنا في 27 محافظة</h2>
+        <p class="section-subtitle" data-i18n="schoolsSubtitle">
+          أينما كنت في مصر، تجد مدرسة WE للتكنولوجيا التطبيقية في محافظتك بأحدث المعامل والورش المتطورة.
+        </p>
+      </div>
+
+      <!-- Filter & Search Toolbar -->
+      <div class="schools-filter-bar">
+        <!-- Live Search -->
+        <div class="search-input-wrapper">
+          <span class="search-icon-pos">🔍</span>
+          <input type="text" id="school-search-input" placeholder="ابحث باسم المحافظة، المدينة، أو العنوان..." data-i18n-placeholder="searchPlaceholder">
+        </div>
+
+        <!-- Region Filter Buttons (Swipeable on Mobile) -->
+        <div class="region-pills">
+          <button class="region-btn active" data-region="all" onclick="filterByRegion('all')" data-i18n="regionAll">جميع المحافظات (27)</button>
+          <button class="region-btn" data-region="greater-cairo" onclick="filterByRegion('greater-cairo')" data-i18n="regionCairo">القاهرة الكبرى</button>
+          <button class="region-btn" data-region="delta" onclick="filterByRegion('delta')" data-i18n="regionDelta">الدلتا</button>
+          <button class="region-btn" data-region="canal-sinai" onclick="filterByRegion('canal-sinai')" data-i18n="regionCanalSinai">القناة وسيناء</button>
+          <button class="region-btn" data-region="upper-egypt" onclick="filterByRegion('upper-egypt')" data-i18n="regionUpper">الصعيد</button>
+          <button class="region-btn" data-region="coastal" onclick="filterByRegion('coastal')" data-i18n="regionCoastal">المدن الساحلية</button>
+        </div>
+
+        <div id="schools-count-badge" class="badge">
+          عرض 27 مدرسة
+        </div>
+      </div>
+
+      <!-- Schools Cards Grid (Rendered via JS) -->
+      <div class="schools-grid" id="schools-grid-container"></div>
+    </div>
+  </section>
+
+  <!-- Admission Guide & Smart Eligibility Calculator -->
+  <section class="admission-section" id="admission">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="admissionTag">شروط الالتحاق والدليل الشامل</span>
+        <h2 class="section-title" data-i18n="admissionTitle">كيف تلتحق بمدارس WE؟</h2>
+        <p class="section-subtitle" data-i18n="admissionSubtitle">
+          خطوات ميسرة وواضحة من التقديم وحتى إعلان نتائج القبول النهائي.
+        </p>
+      </div>
+
+      <div class="admission-grid">
+        <!-- 4-Stage Roadmap -->
+        <div>
+          <h3 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1.2rem;" data-i18n="roadmapTitle">
+            خريطة مراحل القبول لعام 2026/2027
+          </h3>
+          <div class="roadmap-list">
+            <div class="roadmap-item">
+              <div class="roadmap-step-badge">1</div>
+              <div class="roadmap-content">
+                <h4 data-i18n="step1Title">1. التقديم والتسجيل الإلكتروني</h4>
+                <p data-i18n="step1Desc">عبر موقع وزارة التربية والتعليم وبوابة المصرية للاتصالات الرسمية فور فتح باب التنسيق للشهادة الإعدادية.</p>
+              </div>
+            </div>
+
+            <div class="roadmap-item">
+              <div class="roadmap-step-badge">2</div>
+              <div class="roadmap-content">
+                <h4 data-i18n="step2Title">2. اجتياز اختبار القدرات (IQ & English)</h4>
+                <p data-i18n="step2Desc">اختبارات إلكترونية في اللغة العربية والإنجليزية والرياضيات واختبار الذكاء والقدرات الذهنية العامة.</p>
+              </div>
+            </div>
+
+            <div class="roadmap-item">
+              <div class="roadmap-step-badge">3</div>
+              <div class="roadmap-content">
+                <h4 data-i18n="step3Title">3. المقابلة الشخصية والكشف الطبي</h4>
+                <p data-i18n="step3Desc">لقاء لتقييم المهارات الشخصية والشغف التكنولوجي والتأكد من اللياقة الطبية للالتحاق بالتخصص.</p>
+              </div>
+            </div>
+
+            <div class="roadmap-item">
+              <div class="roadmap-step-badge">4</div>
+              <div class="roadmap-content">
+                <h4 data-i18n="step4Title">4. إعلان النتيجة وتسليم الملف</h4>
+                <p data-i18n="step4Desc">استلام كود القبول وتسليم الأوراق الرسمية وبدء العام الدراسي التكنولوجي الواعد.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Calculator Card -->
+        <div class="calc-card" id="admission-calc">
+          <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.4rem;">
+            <span style="font-size: 1.8rem;">🧮</span>
+            <div>
+              <h3 style="font-size: 1.35rem; font-weight: 800;" data-i18n="calcTitle">حاسبة فرصة القبول والتنسيق الذكية</h3>
+              <p style="font-size: 0.82rem; color: var(--text-secondary);" data-i18n="calcSubtitle">ادخل بياناتك للتأكد من انطباق الشروط فورياً</p>
+            </div>
+          </div>
+
+          <form id="eligibility-calc-form">
+            <div class="calc-form-group">
+              <label for="calc-score-input" data-i18n="calcScoreLabel">مجموعك في الشهادة الإعدادية (من 280):</label>
+              <input type="number" id="calc-score-input" min="0" max="280" placeholder="مثال: 250" required>
+            </div>
+
+            <div class="calc-form-group">
+              <label for="calc-gov-select" data-i18n="calcGovLabel">محافظتك:</label>
+              <select id="calc-gov-select" required></select>
+            </div>
+
+            <div class="calc-form-group">
+              <label for="calc-age-input" data-i18n="calcAgeLabel">عمرك في أول أكتوبر:</label>
+              <input type="number" id="calc-age-input" min="13" max="22" value="15" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;" data-i18n="calcBtn">
+              تحقق من نتيجة قبولك الآن 🎯
+            </button>
+          </form>
+
+          <!-- Result Diagnostic Display -->
+          <div id="calc-result-box" class="calc-result-box"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Matrix (Why WE?) -->
+  <section class="comparison-section" id="comparison">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="compTag">المقارنة الحاسمة</span>
+        <h2 class="section-title" data-i18n="compTitle">لماذا تختار مدارس WE عن البدائل التقليدية؟</h2>
+        <p class="section-subtitle" data-i18n="compSubtitle">
+          مقارنة علمية وعملية توضح الفارق الجوهري بين مدارس WE والثانوية العامة والتعليم الفني العادي.
+        </p>
+      </div>
+
+      <div class="swipe-hint" data-i18n="swipeHint">
+        👈 اسحب الجدول أفقياً للمقارنة الكاملة 👉
+      </div>
+
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th data-i18n="compColCriteria">معيار المقارنة</th>
+              <th class="col-we" data-i18n="compColWe">مدارس WE للتكنولوجيا التطبيقية 🚀</th>
+              <th data-i18n="compColThanawya">الثانوية العامة التقليدية 📚</th>
+              <th data-i18n="compColVocational">التعليم الفني العادي ⚙️</th>
+            </tr>
+          </thead>
+          <!-- Dynamically populated to guarantee 100% Arabic & English Translation -->
+          <tbody id="comparison-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- News & WE League 2026 -->
+  <section class="news-section" id="news">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="newsTag">أحدث الفعاليات والأنشطة</span>
+        <h2 class="section-title" data-i18n="newsTitle">دوري مدارس WE 2026 والأنشطة</h2>
+        <p class="section-subtitle" data-i18n="newsSubtitle">
+          حياة طلابية متكاملة تجمع بين التميز الأكاديمي والبطولات الرياضية ومسابقات الابتكار التكنولوجي.
+        </p>
+      </div>
+
+      <!-- Dynamically populated in 100% Arabic & English -->
+      <div class="news-grid" id="news-grid-container"></div>
+    </div>
+  </section>
+
+  <!-- Partners Showcase -->
+  <section class="partners-section">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 1.8rem; font-weight: 800; font-size: 0.95rem; color: var(--text-muted); letter-spacing: 0.5px;" data-i18n="partnersHeader">
+        تحت رعاية وبشراكة استراتيجية مع كبرى الهيئات والشركات العالمية
+      </div>
+      <div class="partners-slider">
+        <div class="partner-logo-item">🏛️ وزارة الاتصالات وتكنولوجيا المعلومات</div>
+        <div class="partner-logo-item">📚 وزارة التربية والتعليم والتعليم الفني</div>
+        <div class="partner-logo-item">💜 الشركة المصرية للاتصالات WE</div>
+        <div class="partner-logo-item">🌐 Cisco Networking Academy</div>
+        <div class="partner-logo-item">📱 Huawei ICT Academy</div>
+        <div class="partner-logo-item">☁️ Microsoft & AWS</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="faqTag">الأسئلة الشائعة</span>
+        <h2 class="section-title" data-i18n="faqTitle">إجابات على أهم ما يشغل ذهنك</h2>
+        <p class="section-subtitle" data-i18n="faqSubtitle">
+          كل ما يحتاج الطالب وولي الأمر معرفته عن مدارس WE للتكنولوجيا التطبيقية.
+        </p>
+      </div>
+
+      <!-- Dynamically populated in 100% Arabic & English -->
+      <div class="faq-list" id="faq-list-container"></div>
+    </div>
+  </section>
+
+  <!-- Interactive Online Application Modal (Multi-Step & 100% Connected to Backend) -->
+  <div class="modal-overlay" id="application-modal">
+    <div class="modal-container">
+      <button class="modal-close-btn" onclick="closeApplicationModal()">&times;</button>
+      
+      <!-- Wizard Steps Indicator -->
+      <div class="step-indicator">
+        <div class="step-bubble active" id="step-bubble-1">1</div>
+        <div class="step-bubble" id="step-bubble-2">2</div>
+        <div class="step-bubble" id="step-bubble-3">3</div>
+        <div class="step-bubble" id="step-bubble-4">✉️</div>
+      </div>
+
+      <!-- Step 1: Personal Data -->
+      <div id="app-step-1">
+        <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.4rem;" data-i18n="modalStep1Title">الخطوة 1: البيانات الشخصية للطالب</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.4rem;" data-i18n="modalStep1Sub">ادخل البيانات بدقة طبقاً لشهادة الميلاد والرقم القومي</p>
+
+        <div class="calc-form-group">
+          <label data-i18n="modalNameLabel">اسم الطالب رباعياً:</label>
+          <input type="text" id="app-name" placeholder="محمد أحمد مصطفى إبراهيم" data-i18n-placeholder="modalNamePlace" required>
+        </div>
+
+        <div class="calc-form-group">
+          <label data-i18n="modalNidLabel">الرقم القومي للطالب (14 رقم):</label>
+          <input type="text" id="app-national-id" maxlength="14" inputmode="numeric" placeholder="30901010100000" data-i18n-placeholder="modalNidPlace" required>
+        </div>
+
+        <div class="calc-form-group">
+          <label>البريد الإلكتروني للطالب (مهم جداً لتلقي كود التحقق وموعد المقابلة) ✉️:</label>
+          <input type="email" id="app-email" inputmode="email" placeholder="student@example.com" required>
+        </div>
+
+        <div class="calc-form-group">
+          <label>النوع / الجنس:</label>
+          <select id="app-gender">
+            <option value="بنين">بنين (طالب)</option>
+            <option value="بنات">بنات (طالبة)</option>
+          </select>
+        </div>
+
+        <div class="calc-form-group">
+          <label>اسم ولي الأمر رباعياً:</label>
+          <input type="text" id="app-guardian-name" placeholder="أحمد مصطفى إبراهيم علي" required>
+        </div>
+
+        <div class="calc-form-group">
+          <label data-i18n="modalPhoneLabel">رقم هاتف ولي الأمر (واتساب):</label>
+          <input type="tel" id="app-phone" inputmode="tel" placeholder="01012345678" data-i18n-placeholder="modalPhonePlace" required>
+        </div>
+
+        <div class="calc-form-group">
+          <label>رقم هاتف الطالب الشخصي (إن وُجد):</label>
+          <input type="tel" id="app-student-phone" inputmode="tel" placeholder="01112345678">
+        </div>
+
+        <button type="button" class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="nextAppStep()" data-i18n="modalBtnNextStep2">
+          التالي: البيانات التعليمية والمدرسة ➡️
+        </button>
+      </div>
+
+      <!-- Step 2: Educational Data -->
+      <div id="app-step-2" style="display: none;">
+        <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.4rem;" data-i18n="modalStep2Title">الخطوة 2: المؤهل الدراسي والمدرسة المرغوبة</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.4rem;" data-i18n="modalStep2Sub">درجات الشهادة الإعدادية والمدرسة التابعة لـ WE</p>
+
+        <div class="calc-form-group">
+          <label data-i18n="modalScoreLabel">المجموع الكلي في الشهادة الإعدادية (من 280):</label>
+          <input type="number" id="app-score" min="225" max="280" step="0.5" placeholder="مثال: 255" data-i18n-placeholder="modalScorePlace" required>
+          <small style="color: var(--text-muted); font-size: 0.78rem;">* الحد الأدنى للقبول 225 درجة</small>
+        </div>
+
+        <div class="calc-form-group">
+          <label>المحافظة:</label>
+          <select id="app-gov" onchange="onAppGovChange()" required></select>
+        </div>
+
+        <div class="calc-form-group">
+          <label>مدرسة WE المرغوبة للالتحاق بها:</label>
+          <select id="app-school-target" required></select>
+        </div>
+
+        <div class="calc-form-group">
+          <label data-i18n="modalPrevSchoolLabel">اسم المدرسة الإعدادية السابقة:</label>
+          <input type="text" id="app-school-prev" placeholder="مدرسة المستقبل الإعدادية بنين" data-i18n-placeholder="modalPrevSchoolPlace" required>
+        </div>
+
+        <div style="display: flex; gap: 0.8rem; margin-top: 1.4rem;">
+          <button type="button" class="btn btn-outline" style="flex: 1;" onclick="prevAppStep()" data-i18n="modalBtnPrev">⬅️ السابق</button>
+          <button type="button" class="btn btn-primary" style="flex: 2;" onclick="nextAppStep()" data-i18n="modalBtnNextStep3">التالي: اختيار التخصص ➡️</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Specialization Preferences (Featuring Digital Arc) -->
+      <div id="app-step-3" style="display: none;">
+        <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.4rem;" data-i18n="modalStep3Title">الخطوة 3: ترتيب رغبات التخصص</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.4rem;" data-i18n="modalStep3Sub">حدد ترتيب التخصصات المفضلة لديك</p>
+
+        <div class="calc-form-group">
+          <label data-i18n="modalPref1Label">الرغبة الأولى:</label>
+          <select id="app-pref-1"></select>
+        </div>
+
+        <div class="calc-form-group">
+          <label data-i18n="modalPref2Label">الرغبة الثانية:</label>
+          <select id="app-pref-2"></select>
+        </div>
+
+        <div id="app-form-error" style="display: none; color: #ff0055; background: rgba(255, 0, 85, 0.12); border: 1px solid #ff0055; padding: 0.8rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.9rem; text-align: center;"></div>
+
+        <div style="display: flex; gap: 0.8rem; margin-top: 1.4rem;">
+          <button type="button" class="btn btn-outline" style="flex: 1;" onclick="prevAppStep()" data-i18n="modalBtnPrev">⬅️ السابق</button>
+          <button type="button" class="btn btn-cyan" id="app-submit-btn" style="flex: 2;" onclick="nextAppStep()">التالي: التحقق من البريد 📩</button>
+        </div>
+      </div>
+
+      <!-- Step 4 (OTP Verification): Verify Email with 6-Digit Code -->
+      <div id="app-step-otp" style="display: none; text-align: center; padding: 0.5rem 0;">
+        <div style="font-size: 2.8rem; margin-bottom: 0.5rem;">📩</div>
+        <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 0.4rem;">تأكيد البريد الإلكتروني</h3>
+        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.2rem;">
+          تم إرسال رمز تحقق مكون من 6 أرقام إلى بريدك:<br>
+          <b id="otp-target-email" style="color: var(--we-gold); font-size: 1.05rem;"></b>
+        </p>
+
+        <!-- Live Inbox Preview Link (Opens the actual received email) -->
+        <div id="otp-inbox-preview-wrap" style="display: none; margin: 0.8rem auto 1.2rem auto; max-width: 380px;">
+          <a id="otp-open-inbox-btn" href="#" target="_blank" style="background: linear-gradient(135deg, rgba(94, 39, 132, 0.6), rgba(56, 16, 87, 0.8)); border: 1.5px solid var(--we-gold); color: #fff; font-weight: 800; text-decoration: none; padding: 0.75rem 1.2rem; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; box-shadow: 0 4px 15px rgba(94, 39, 132, 0.35); font-size: 0.92rem; transition: transform 0.2s;">
+            <span>📬 فتح صندوق البريد لرؤية الرسالة والكود</span>
+            <span>↗</span>
+          </a>
+          <span style="display: block; font-size: 0.76rem; color: #9A92A8; margin-top: 0.35rem;">
+            اضغط لفتح الرسالة الرسمية الواردة إلى البريد وقراءة رمز التحقق
+          </span>
+        </div>
+
+        <div class="calc-form-group" style="text-align: center;">
+          <label style="text-align: center; margin-bottom: 0.6rem;">أدخل رمز التحقق (OTP):</label>
+          <input type="text" id="app-otp-code" maxlength="6" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" placeholder="849201" style="text-align: center; font-size: 1.7rem; font-weight: 900; letter-spacing: 8px; font-family: monospace; max-width: 240px; margin: 0 auto; display: block;" required>
+        </div>
+
+        <div id="app-otp-error" style="display: none; color: #ff0055; background: rgba(255, 0, 85, 0.12); border: 1px solid #ff0055; padding: 0.8rem; border-radius: 8px; margin: 1rem 0; font-size: 0.9rem;"></div>
+
+        <div style="display: flex; gap: 0.8rem; margin-top: 1.4rem;">
+          <button type="button" class="btn btn-outline" style="flex: 1;" onclick="prevAppStep()">⬅️ السابق</button>
+          <button type="button" class="btn btn-cyan" id="app-verify-btn" style="flex: 2;" onclick="submitVerifiedApplication()">تأكيد الرمز وإتمام التسجيل 🚀</button>
+        </div>
+
+        <div style="margin-top: 1.2rem;">
+          <button type="button" onclick="resendOtp()" style="background: none; border: none; color: var(--we-gold); font-size: 0.85rem; cursor: pointer; text-decoration: underline; font-family: inherit;">
+            لم يصلك الرمز؟ إعادة إرسال رمز جديد 🔄
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 5 (Final): Success Message -->
+      <div id="app-step-5" style="display: none; text-align: center; padding: 1.2rem 0;">
+        <div style="font-size: 3.2rem; margin-bottom: 0.8rem;">🎉</div>
+        <h3 style="font-size: 1.6rem; color: var(--we-green); font-weight: 900; margin-bottom: 0.7rem;" data-i18n="modalSuccessTitle">
+          تم تسجيل طلبك وتوثيقه بنجاح!
+        </h3>
+        <p style="font-size: 1rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;" data-i18n="modalSuccessDesc">
+          تم اعتماد طلبك في منظومة مدارس WE للتكنولوجيا التطبيقية وتوثيق البريد الإلكتروني.
+        </p>
+
+        <div style="background: rgba(94, 39, 132, 0.15); border: 1.5px solid var(--we-gold); padding: 1.2rem; border-radius: var(--radius-md); margin-bottom: 1.5rem;">
+          <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.3rem;">كود المتابعة الرسمي الخاص بك:</div>
+          <div style="font-size: 1.8rem; font-weight: 900; letter-spacing: 2px; color: var(--we-gold); font-family: monospace;" id="generated-app-code">
+            WE-2026-XXXXXX
+          </div>
+          <div id="generated-app-details" style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.6rem;"></div>
+        </div>
+
+        <div style="background: rgba(0, 255, 136, 0.08); border: 1px solid var(--we-green); border-radius: 8px; padding: 0.8rem; font-size: 0.88rem; color: #fff; margin-bottom: 1.5rem;">
+          📬 <b>ملاحظة هامة:</b> ستصلك رسالة رسمية على بريدك الإلكتروني بالموعد الدقيق للمقابلة الشخصية واختبار الذكاء، واسم المدرسة المقررة ومكان الحضور.
+        </div>
+
+        <div style="display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap;">
+          <button class="btn btn-outline" onclick="window.print()">
+            🖨️ طباعة إشعار التقديم
+          </button>
+          <button class="btn btn-primary" onclick="closeApplicationModal()" data-i18n="modalBtnClose">
+            تم، إغلاق النافذة
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Live Application Tracking Modal -->
+  <div class="modal-overlay" id="tracking-modal">
+    <div class="modal-container">
+      <button class="modal-close-btn" onclick="closeTrackingModal()">&times;</button>
+      
+      <div style="text-align: center; margin-bottom: 1.5rem;">
+        <span class="badge" style="margin-bottom: 0.5rem;">WE ATS // LIVE STATUS</span>
+        <h3 style="font-size: 1.45rem; font-weight: 800;" data-i18n="trackModalTitle">الاستعلام عن حالة طلب الالتحاق</h3>
+        <p style="font-size: 0.88rem; color: var(--text-secondary);" data-i18n="trackModalSub">ادخل كود التقديم (مثل WE-2026-884102) أو الرقم القومي للطالب</p>
+      </div>
+
+      <form id="tracking-form" onsubmit="submitTrackingSearch(event)">
+        <div class="calc-form-group">
+          <label data-i18n="trackInputLabel">كود التقديم أو الرقم القومي (14 رقم):</label>
+          <div style="display: flex; gap: 0.6rem;">
+            <input type="text" id="track-query-input" placeholder="مثال: WE-2026-884102 أو 30908120104512" required style="flex: 1;">
+            <button type="submit" class="btn btn-primary" id="track-search-btn">
+              بحث 🔍
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <div id="tracking-result-box" style="display: none; margin-top: 1.5rem;"></div>
+    </div>
+  </div>
+
+  <!-- Mini IQ & Aptitude Practice Quiz Modal -->
+  <div class="modal-overlay" id="quiz-modal">
+    <div class="modal-container">
+      <button class="modal-close-btn" onclick="closeQuizModal()">&times;</button>
+      <div id="quiz-card-content"></div>
+    </div>
+  </div>
+
+  <!-- Modern Footer (100% Translated Links) -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand Col -->
+        <div class="footer-brand">
+          <img src="assets/images/logo-en-white.png" alt="WE ATS Logo" style="height: 42px; width: auto; margin-bottom: 0.8rem;" class="footer-logo-img">
+          <p data-i18n="footerDesc">
+            مدارس WE للتكنولوجيا التطبيقية، أول وأكبر مدارس ثانوية تكنولوجية معتمدة دولياً في مصر متخصصة في العمارة الرقمية والشبكات والبرمجيات والذكاء الاصطناعي.
+          </p>
+          <div style="font-weight: 900; color: var(--we-gold); margin-bottom: 1rem;" data-i18n="footerHotline">
+            📞 الخط الساخن الموحد: 111 أو 155
+          </div>
+          <div class="social-links">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram">📷</a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="YouTube">▶️</a>
+            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="TikTok">🎵</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn">💼</a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Facebook">📘</a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h4 data-i18n="footerQuickLinks">روابط سريعة</h4>
+          <ul class="footer-links">
+            <li><a href="#about" data-i18n="navAbout">عن المدارس</a></li>
+            <li><a href="#specializations" data-i18n="navSpecs">المسارات التكنولوجية</a></li>
+            <li><a href="#schools" data-i18n="navSchools">فروع الـ 27 محافظة</a></li>
+            <li><a href="#admission" data-i18n="navAdmission">دليل وشروط القبول</a></li>
+            <li><a href="javascript:void(0)" onclick="openTrackingModal()" data-i18n="footerTrack">🔍 استعلام عن نتيجة القبول</a></li>
+            <li><a href="/admin" target="_blank" style="color: var(--we-gold); font-weight: 700;">🔐 لوحة الإدارة المركزية (Admin)</a></li>
+            <li><a href="javascript:void(0)" onclick="replayIntro()" style="color: var(--we-gold); font-weight: 800; cursor: pointer;">🎬 إعادة مشاهدة الدخلة</a></li>
+          </ul>
+        </div>
+
+        <!-- Specializations Links (Fully Translated) -->
+        <div class="footer-col">
+          <h4 data-i18n="footerSpecialties">التخصصات التقنية</h4>
+          <ul class="footer-links">
+            <li><a href="#specializations" onclick="selectSpecialization('digital-arc')" data-i18n="footerSpecArc">ديجيتال ارك (العمارة الرقمية)</a></li>
+            <li><a href="#specializations" onclick="selectSpecialization('networks')" data-i18n="footerSpecCyber">الشبكات والأمن السيبراني</a></li>
+            <li><a href="#specializations" onclick="selectSpecialization('web')" data-i18n="footerSpecWeb">تطوير المواقع والبرمجيات</a></li>
+            <li><a href="#specializations" onclick="selectSpecialization('ai')" data-i18n="footerSpecAi">الذكاء الاصطناعي وتحليل البيانات</a></li>
+            <li><a href="#specializations" onclick="selectSpecialization('digital-arts')" data-i18n="footerSpecArts">الفنون الرقمية والوسائط</a></li>
+          </ul>
+        </div>
+
+        <!-- Official Support -->
+        <div class="footer-col">
+          <h4 data-i18n="footerContact">المقر والدعم</h4>
+          <ul class="footer-links" style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.8;">
+            <li data-i18n="footerAddr1">📍 جمهورية مصر العربية - القاهرة</li>
+            <li data-i18n="footerAddr2">🏢 وزارة الاتصالات - القرية الذكية</li>
+            <li data-i18n="footerAddr3">🌐 شراكة: المصرية للاتصالات WE</li>
+            <li data-i18n="footerAddr4">🕒 المواعيد: الأحد إلى الخميس (8ص - 3م)</li>
+            <li data-i18n="footerAddr5">✉️ البريد: info@we-ats.edu.eg</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div data-i18n="copyright">
+          جميع الحقوق محفوظة © 2026 مدارس WE للتكنولوجيا التطبيقية - الشركة المصرية للاتصالات WE.
+        </div>
+        <div data-i18n="footerBadgeBottom">
+          تصميم فائق التطور بمعايير الويب العالمية
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Action Buttons -->
+  <div class="floating-actions">
+    <a href="https://wa.me/201111111111" target="_blank" rel="noopener noreferrer" class="fab fab-whatsapp" aria-label="WhatsApp Contact" title="تواصل واتساب">
+      💬
+    </a>
+    <button class="fab fab-top" id="fab-scroll-top" onclick="scrollToTop()" aria-label="Scroll to top" title="العودة للأعلى">
+      ↑
+    </button>
+  </div>
+
+  <!-- Mobile Sticky Bottom Action Bar (Visible Only on <= 768px) -->
+  <div class="mobile-sticky-bar" id="mobile-sticky-bar">
+    <button class="btn btn-primary mobile-sticky-btn" onclick="openApplicationModal()">
+      <span>قدّم الآن (تسجيل 2026)</span> 🚀
+    </button>
+    <button class="btn btn-outline mobile-sticky-btn" onclick="openTrackingModal()">
+      <span>استعلام</span> 🔍
+    </button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/schools-data.js?v=2.4"></script>
+  <script src="js/particles.js?v=2.4"></script>
+  <script src="js/app.js?v=2.4"></script>
+</body>
+</html>
