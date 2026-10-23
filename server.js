@@ -22,9 +22,13 @@ const PORT = process.env.PORT || 3000;
 
 // 1. Initialize SQLite Database & Auto-Seed
 console.log('🔄 Initializing Enterprise Database & Schemas...');
-initSchema();
-seedDatabase();
-console.log('🚀 Database Engine Armed & Ready (WAL Mode Enabled)');
+try {
+  initSchema();
+  seedDatabase();
+  console.log('🚀 Database Engine Armed & Ready');
+} catch (dbErr) {
+  console.warn('Database startup notice:', dbErr.message);
+}
 
 // 2. Security & Request Middleware
 app.use(helmet({
@@ -101,24 +105,26 @@ function getLocalIp() {
   return 'localhost';
 }
 
-// Start Server (Binds to 0.0.0.0 to enable mobile Wi-Fi connectivity)
-const HOST = '0.0.0.0';
-const server = app.listen(PORT, HOST, () => {
-  const localIp = getLocalIp();
-  console.log(`================================================================`);
-  console.log(`🌐 WE Applied Technology Schools — Enterprise Engine is ACTIVE!`);
-  console.log(`🔗 Portal URL (PC):      http://localhost:${PORT}`);
-  console.log(`📱 Mobile Phone (Wi-Fi): http://${localIp}:${PORT}`);
-  console.log(`🔐 Admin Dashboard:      http://localhost:${PORT}/admin`);
-  console.log(`📊 Core REST API:        http://localhost:${PORT}/api/stats`);
-  console.log(`💾 Native SQLite:        data/we_schools.db (WAL Enabled)`);
-  console.log(`================================================================`);
-});
+// Start Server only in standalone / local mode (not in Vercel serverless)
+if (!process.env.VERCEL) {
+  const HOST = '0.0.0.0';
+  const server = app.listen(PORT, HOST, () => {
+    const localIp = getLocalIp();
+    console.log(`================================================================`);
+    console.log(`🌐 WE Applied Technology Schools — Enterprise Engine is ACTIVE!`);
+    console.log(`🔗 Portal URL (PC):      http://localhost:${PORT}`);
+    console.log(`📱 Mobile Phone (Wi-Fi): http://${localIp}:${PORT}`);
+    console.log(`🔐 Admin Dashboard:      http://localhost:${PORT}/admin`);
+    console.log(`📊 Core REST API:        http://localhost:${PORT}/api/stats`);
+    console.log(`💾 Native SQLite:        data/we_schools.db (WAL Enabled)`);
+    console.log(`================================================================`);
+  });
 
-// Graceful Shutdown
-process.on('SIGTERM', () => {
-  console.log('SIGTERM signal received: closing HTTP server.');
-  server.close(() => console.log('HTTP server closed.'));
-});
+  // Graceful Shutdown
+  process.on('SIGTERM', () => {
+    console.log('SIGTERM signal received: closing HTTP server.');
+    server.close(() => console.log('HTTP server closed.'));
+  });
+}
 
 module.exports = app;

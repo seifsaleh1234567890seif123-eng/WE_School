@@ -3,6 +3,10 @@ const db = require('../config/db');
 const { schoolsData, specializationsData } = require('../../js/schools-data');
 
 function seedDatabase() {
+  if (db.isMock) {
+    console.warn('Skipping database seeding: db is in mock mode');
+    return;
+  }
   // 1. Seed Admin Account
   const adminExists = db.prepare('SELECT id FROM admins WHERE username = ?').get('admin');
   if (!adminExists) {

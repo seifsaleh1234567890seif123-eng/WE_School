@@ -1,6 +1,10 @@
 const db = require('../config/db');
 
 function initSchema() {
+  if (db.isMock) {
+    console.warn('Skipping schema init: db is in mock mode');
+    return;
+  }
   db.exec(`
     -- 1. Admin Users
     CREATE TABLE IF NOT EXISTS admins (
