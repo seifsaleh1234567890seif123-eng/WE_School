@@ -2870,9 +2870,9 @@ select option:checked {
 }
 
 .cyber-intro-overlay.intro-opened {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
   transition: opacity 0.5s ease 0.45s, visibility 0.5s ease 0.45s;
 }
 

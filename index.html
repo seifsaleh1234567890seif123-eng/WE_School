@@ -15,17 +15,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=3.0">
+  <link rel="stylesheet" href="css/style.css?v=5.0">
 </head>
 <body>
 
   <!-- Cinematic Futuristic Cyber Entrance Portal -->
-  <div id="cyber-intro-portal" class="cyber-intro-overlay">
+  <div id="cyber-intro-portal" class="cyber-intro-overlay" onclick="window.finishIntroImmediately && window.finishIntroImmediately()">
     <div class="shutter shutter-top"></div>
     <div class="shutter shutter-bottom"></div>
     <div class="intro-grid-fx"></div>
 
-    <div class="intro-stage">
+    <div class="intro-stage" onclick="event.stopPropagation()">
       <!-- Cyber Hologram Orb & Energy Rings -->
       <div class="hologram-container">
         <div class="energy-ring ring-outer"></div>
@@ -44,19 +44,19 @@
           <span>WE APPLIED TECHNOLOGY SCHOOLS</span>
         </div>
         <div class="intro-console-text" id="intro-console">
-          INITIALIZING CYBER INFRASTRUCTURE...
+          > تهيئة شبكات الألياف الضوئية المتقدمة...
         </div>
         <div class="intro-meter-container">
-          <div class="intro-meter-bar" id="intro-progress-bar"></div>
+          <div class="intro-meter-bar" id="intro-progress-bar" style="width: 15%;"></div>
         </div>
         <div class="intro-percentage-row">
           <span class="intro-tech-sub">EGYPT 27 GOVERNORATES // 2026</span>
-          <span class="intro-pct" id="intro-percentage">0%</span>
+          <span class="intro-pct" id="intro-percentage">15%</span>
         </div>
       </div>
 
       <!-- Quick Skip Button -->
-      <button class="intro-skip-btn" onclick="finishIntroImmediately()" id="intro-skip-btn" aria-label="Skip Intro">
+      <button class="intro-skip-btn" onclick="window.finishIntroImmediately && window.finishIntroImmediately()" id="intro-skip-btn" aria-label="Skip Intro" type="button">
         <span>تخطي</span> ⏩
       </button>
     </div>
@@ -64,6 +64,89 @@
     <!-- Shockwave Flash Burst -->
     <div class="intro-shockwave" id="intro-shockwave"></div>
   </div>
+
+  <!-- Bulletproof Self-Contained Intro Runner (Zero-Dependency & Immediate Execution) -->
+  <script>
+    (function() {
+      var portal = document.getElementById('cyber-intro-portal');
+      var bar = document.getElementById('intro-progress-bar');
+      var pct = document.getElementById('intro-percentage');
+      var consoleEl = document.getElementById('intro-console');
+      var shockwave = document.getElementById('intro-shockwave');
+      var isClosed = false;
+      var introTimer = null;
+
+      var messages = [
+        "> تهيئة شبكات الألياف الضوئية المتقدمة...",
+        "> ربط مقرات مدارس WE في 27 محافظة...",
+        "> مزامنة التخصصات التكنولوجية والذكاء الاصطناعي...",
+        "> البوابة الرقمية جاهزة للانطلاق 🚀"
+      ];
+
+      function closePortal() {
+        if (isClosed) return;
+        isClosed = true;
+        if (introTimer) clearInterval(introTimer);
+
+        if (shockwave) shockwave.classList.add('blasting');
+        if (portal) {
+          portal.classList.add('intro-opened');
+          portal.style.pointerEvents = 'none';
+        }
+
+        var hero = document.querySelector('.hero-section');
+        if (hero) hero.classList.add('hero-revealed');
+
+        setTimeout(function() {
+          if (portal) {
+            portal.style.display = 'none';
+          }
+        }, 550);
+      }
+
+      window.finishIntroImmediately = function() {
+        if (bar) bar.style.width = '100%';
+        if (pct) pct.textContent = '100%';
+        if (consoleEl) consoleEl.textContent = '> تم الدخول الفوري 🚀';
+        closePortal();
+      };
+
+      window.startInlineIntro = function() {
+        isClosed = false;
+        var progress = 15;
+        if (bar) bar.style.width = '15%';
+        if (pct) pct.textContent = '15%';
+        if (introTimer) clearInterval(introTimer);
+
+        introTimer = setInterval(function() {
+          var inc = progress < 40 ? 7 : (progress < 75 ? 11 : 16);
+          progress += inc;
+          if (progress > 100) progress = 100;
+
+          if (bar) bar.style.width = progress + '%';
+          if (pct) pct.textContent = progress + '%';
+
+          var msgIdx = progress < 35 ? 0 : (progress < 65 ? 1 : (progress < 90 ? 2 : 3));
+          if (consoleEl) consoleEl.textContent = messages[msgIdx];
+
+          if (progress >= 100) {
+            clearInterval(introTimer);
+            setTimeout(closePortal, 120);
+          }
+        }, 28);
+      };
+
+      // Launch intro animation immediately on DOM parse
+      window.startInlineIntro();
+
+      // ABSOLUTE FAILSAFE: Unconditionally dismiss intro after 1.5 seconds under all conditions
+      setTimeout(function() {
+        if (!isClosed) {
+          window.finishIntroImmediately();
+        }
+      }, 1500);
+    })();
+  </script>
 
   <!-- Glowing Scroll Progress Bar -->
   <div id="scroll-progress-bar" class="scroll-progress-bar"></div>
@@ -128,12 +211,13 @@
     <div class="fullwidth-video-container">
       <video 
         id="top-hero-video" 
-        src="assets/videos/school-hero.mp4" 
         autoplay 
         loop 
         muted 
         playsinline 
-        preload="auto" 
+        webkit-playsinline="true"
+        x5-playsinline="true"
+        preload="metadata" 
         poster="assets/images/students-lab.webp"
         class="top-hero-video-player">
         <source src="assets/videos/school-hero.mp4" type="video/mp4">
@@ -926,8 +1010,8 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/schools-data.js?v=2.4"></script>
-  <script src="js/particles.js?v=2.4"></script>
-  <script src="js/app.js?v=2.4"></script>
+  <script src="js/schools-data.js?v=5.0"></script>
+  <script src="js/particles.js?v=5.0"></script>
+  <script src="js/app.js?v=5.0"></script>
 </body>
 </html>

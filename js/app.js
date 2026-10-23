@@ -598,17 +598,17 @@ const faqData = {
 
 // Initialize Application
 document.addEventListener('DOMContentLoaded', () => {
-  applyTheme(currentTheme);
-  applyLanguage(currentLang);
-  initParticles();
-  initHeroVideoPlayer();
-  initCounters();
-  initEventListeners();
-  initCalculator();
-  initCyberIntro();
-  initScrollProgressBar();
-  initScrollReveal();
-  init3DTiltCards();
+  try { applyTheme(currentTheme); } catch (e) { console.warn('applyTheme:', e); }
+  try { applyLanguage(currentLang); } catch (e) { console.warn('applyLanguage:', e); }
+  try { initParticles(); } catch (e) { console.warn('initParticles:', e); }
+  try { initHeroVideoPlayer(); } catch (e) { console.warn('initHeroVideoPlayer:', e); }
+  try { initCounters(); } catch (e) { console.warn('initCounters:', e); }
+  try { initEventListeners(); } catch (e) { console.warn('initEventListeners:', e); }
+  try { initCalculator(); } catch (e) { console.warn('initCalculator:', e); }
+  try { initCyberIntro(); } catch (e) { console.warn('initCyberIntro:', e); }
+  try { initScrollProgressBar(); } catch (e) { console.warn('initScrollProgressBar:', e); }
+  try { initScrollReveal(); } catch (e) { console.warn('initScrollReveal:', e); }
+  try { init3DTiltCards(); } catch (e) { console.warn('init3DTiltCards:', e); }
 });
 
 // Particles init
@@ -619,116 +619,50 @@ function initParticles() {
 }
 
 // ==========================================================================
-// Futuristic Cyber Entrance Portal (Splash Intro) Controller
+// High-Speed Cyber Entrance Portal (Snappy, Futuristic & Lightweight)
 // ==========================================================================
-let introInterval = null;
-let introCompleted = false;
-
 function initCyberIntro() {
   const portal = document.getElementById('cyber-intro-portal');
-  const progressBar = document.getElementById('intro-progress-bar');
-  const pctText = document.getElementById('intro-percentage');
-  const consoleText = document.getElementById('intro-console');
-  const shockwave = document.getElementById('intro-shockwave');
+  if (!portal) return;
 
-  if (!portal || !progressBar || !pctText || !consoleText) return;
-
-  introCompleted = false;
-  portal.classList.remove('intro-opened');
-  portal.style.display = 'flex';
-  portal.style.opacity = '1';
-  portal.style.visibility = 'visible';
-
-  if (shockwave) shockwave.classList.remove('blasting');
-
-  const isAr = currentLang === 'ar';
-  const steps = isAr ? [
-    { at: 0, text: "> تهيئة شبكات الألياف الضوئية المتقدمة..." },
-    { at: 28, text: "> ربط مقرات مدارس WE في الـ 27 محافظة..." },
-    { at: 62, text: "> مزامنة ديجيتال ارك والذكاء الاصطناعي والأمن السيبراني..." },
-    { at: 90, text: "> البوابة الرقمية جاهزة للانطلاق 🚀" }
-  ] : [
-    { at: 0, text: "> INITIALIZING EGYPTIAN FIBER BACKBONE..." },
-    { at: 28, text: "> SYNCHRONIZING 27 GOVERNORATE CAMPUSES..." },
-    { at: 62, text: "> CALIBRATING DIGITAL ARCHITECTURE & AI CORES..." },
-    { at: 90, text: "> WE ATS NEURAL PORTAL READY 🚀" }
-  ];
-
-  let progress = 0;
-  clearInterval(introInterval);
-
-  introInterval = setInterval(() => {
-    // Dynamic organic acceleration
-    const inc = progress < 40 ? 3 : (progress < 80 ? 4 : 6);
-    progress += inc;
-
-    if (progress > 100) progress = 100;
-
-    progressBar.style.width = progress + '%';
-    pctText.textContent = progress + '%';
-
-    for (let i = steps.length - 1; i >= 0; i--) {
-      if (progress >= steps[i].at) {
-        consoleText.textContent = steps[i].text;
-        break;
-      }
-    }
-
-    if (progress >= 100) {
-      clearInterval(introInterval);
-      triggerIntroExit();
-    }
-  }, 40);
-}
-
-function triggerIntroExit() {
-  if (introCompleted) return;
-  introCompleted = true;
-
-  const portal = document.getElementById('cyber-intro-portal');
-  const shockwave = document.getElementById('intro-shockwave');
-  const heroSection = document.querySelector('.hero-section');
-
-  // Play subtle Sci-Fi power chime via Web Audio (safe fallback)
-  playSciFiChime();
-
-  // Trigger shockwave light burst
-  if (shockwave) {
-    shockwave.classList.add('blasting');
+  // If already opened by inline runner, ensure clean state
+  if (portal.classList.contains('intro-opened') || portal.style.display === 'none') {
+    return;
   }
 
-  setTimeout(() => {
-    if (portal) {
-      portal.classList.add('intro-opened');
-    }
-    if (heroSection) {
-      heroSection.classList.add('hero-revealed');
-    }
-  }, 180);
-
-  setTimeout(() => {
-    if (portal) {
-      portal.style.display = 'none';
-    }
-  }, 950);
+  // Failsafe: if inline runner hasn't finished, complete it
+  if (typeof window.finishIntroImmediately === 'function') {
+    setTimeout(() => {
+      if (portal && !portal.classList.contains('intro-opened')) {
+        window.finishIntroImmediately();
+      }
+    }, 400);
+  }
 }
 
 function finishIntroImmediately() {
-  clearInterval(introInterval);
-  const progressBar = document.getElementById('intro-progress-bar');
-  const pctText = document.getElementById('intro-percentage');
-  const consoleText = document.getElementById('intro-console');
-
-  if (progressBar) progressBar.style.width = '100%';
-  if (pctText) pctText.textContent = '100%';
-  if (consoleText) consoleText.textContent = currentLang === 'ar' ? '> تم الدخول الفوري 🚀' : '> INSTANT ACCESS GRANTED 🚀';
-
-  triggerIntroExit();
+  if (typeof window.finishIntroImmediately === 'function') {
+    window.finishIntroImmediately();
+  } else {
+    const portal = document.getElementById('cyber-intro-portal');
+    if (portal) {
+      portal.classList.add('intro-opened');
+      portal.style.display = 'none';
+    }
+  }
 }
 
 function replayIntro() {
+  const portal = document.getElementById('cyber-intro-portal');
+  if (!portal) return;
+  portal.classList.remove('intro-opened');
+  portal.style.removeProperty('display');
+  portal.style.removeProperty('opacity');
+  portal.style.pointerEvents = 'auto';
   window.scrollTo({ top: 0, behavior: 'instant' });
-  initCyberIntro();
+  if (typeof window.startInlineIntro === 'function') {
+    window.startInlineIntro();
+  }
 }
 
 // Gentle Web Audio API synthesizer for sci-fi power sound (no audio files needed!)
@@ -2101,14 +2035,49 @@ function initHeroVideoPlayer() {
     toggleHeroVideoPlay();
   });
 
+  // Fallback to official CDN if local file fails to load
+  vid.addEventListener('error', () => {
+    const cdnUrl = 'https://we-ats.com/wp-content/uploads/2024/08/video-1.mp4';
+    if (vid.src !== cdnUrl) {
+      vid.src = cdnUrl;
+      vid.load();
+      vid.play().catch(() => {});
+    }
+  });
+
+  // When clicking the "فيديو المدرسة" link in navbar: ensure video plays immediately
+  document.querySelectorAll('a[href="#school-video"]').forEach(link => {
+    link.addEventListener('click', () => {
+      vid.muted = true;
+      vid.play().catch(() => {});
+    });
+  });
+
   // Autoplay loop muted
   vid.muted = true;
-  const playPromise = vid.play();
-  if (playPromise !== undefined) {
-    playPromise.catch(() => {
-      if (centerPlay) centerPlay.classList.add('visible');
-    });
-  }
+  const tryAutoplay = () => {
+    const playPromise = vid.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        if (centerPlay) centerPlay.classList.remove('visible');
+      }).catch(() => {
+        if (centerPlay) centerPlay.classList.add('visible');
+      });
+    }
+  };
+  tryAutoplay();
+
+  // If browser policy blocks autoplay before user gesture, play on first interaction
+  const onFirstInteraction = () => {
+    if (vid.paused) {
+      vid.muted = true;
+      tryAutoplay();
+    }
+    document.removeEventListener('click', onFirstInteraction);
+    document.removeEventListener('touchstart', onFirstInteraction);
+  };
+  document.addEventListener('click', onFirstInteraction, { once: true, passive: true });
+  document.addEventListener('touchstart', onFirstInteraction, { once: true, passive: true });
 
   updateHeroAudioUI();
 }

@@ -29,7 +29,8 @@ console.log('🚀 Database Engine Armed & Ready (WAL Mode Enabled)');
 // 2. Security & Request Middleware
 app.use(helmet({
   contentSecurityPolicy: false, // Allows inline Web Audio API, dynamic styles & animations
-  crossOriginEmbedderPolicy: false
+  crossOriginEmbedderPolicy: false,
+  crossOriginResourcePolicy: false
 }));
 app.use(cors({
   origin: '*',
@@ -52,8 +53,10 @@ app.use(express.static(path.join(__dirname), {
   etag: true,
   lastModified: true,
   setHeaders: (res, filePath) => {
-    if (filePath.endsWith('.html')) {
-      res.setHeader('Cache-Control', 'no-cache');
+    if (/\.(html|js|css)$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+    } else if (/\.(webp|png|jpg|jpeg|svg|ico|mp4|woff2?)$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'public, max-age=86400');
     }
   }
 }));

@@ -1,12 +1,19 @@
-// Futuristic Cyber Fiber-Optic Particle Mesh
+// High-Performance Cyber Particle Mesh (Ultra-Lightweight & GPU Efficient)
 function initCyberParticles(canvasId) {
   const canvas = document.getElementById(canvasId);
   if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  
+
+  // Skip completely on low-powered mobile devices to save 100% CPU/battery
+  if (window.innerWidth < 768) {
+    canvas.style.display = 'none';
+    return;
+  }
+
+  const ctx = canvas.getContext('2d', { alpha: true });
   let width, height;
   let particles = [];
-  let mouse = { x: null, y: null, radius: 140 };
+  let isVisible = true;
+  let animId = null;
 
   function resize() {
     width = canvas.width = canvas.parentElement.offsetWidth || window.innerWidth;
@@ -16,98 +23,80 @@ function initCyberParticles(canvasId) {
 
   function createParticles() {
     particles = [];
-    const particleCount = Math.floor((width * height) / 14000);
-    const colors = ['#5E2784', '#7E33B8', '#9D4EDD', '#C48822', '#381057'];
+    // Strict cap: maximum 28 particles (down from 150+) to eliminate O(N^2) lag
+    const count = Math.min(28, Math.max(12, Math.floor((width * height) / 45000)));
+    const colors = ['#5E2784', '#7E33B8', '#C48822'];
     
-    for (let i = 0; i < particleCount; i++) {
+    for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.8,
-        vy: (Math.random() - 0.5) * 0.8,
-        radius: Math.random() * 2 + 1,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        pulse: Math.random() * Math.PI,
-        pulseSpeed: 0.02 + Math.random() * 0.03
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        radius: Math.random() * 1.5 + 1,
+        color: colors[i % colors.length]
       });
     }
   }
 
-  window.addEventListener('resize', resize);
-  window.addEventListener('mousemove', (e) => {
-    const rect = canvas.getBoundingClientRect();
-    mouse.x = e.clientX - rect.left;
-    mouse.y = e.clientY - rect.top;
-  });
-  window.addEventListener('mouseleave', () => {
-    mouse.x = null;
-    mouse.y = null;
-  });
-
-  function draw() {
-    ctx.clearRect(0, 0, width, height);
-
-    // Draw connecting lines (official fiber optic connections)
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < 110) {
-          const alpha = (1 - dist / 110) * 0.28;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(94, 39, 132, ${alpha * 0.55})`;
-          ctx.lineWidth = 0.8;
-          ctx.stroke();
-        }
+  // Only animate when visible in viewport
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      isVisible = entries[0].isIntersecting;
+      if (isVisible && !animId) {
+        draw();
       }
-    }
-
-    // Connect to mouse cursor with academic gold aura
-    if (mouse.x !== null && mouse.y !== null) {
-      for (let i = 0; i < particles.length; i++) {
-        const dx = mouse.x - particles[i].x;
-        const dy = mouse.y - particles[i].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < mouse.radius) {
-          const alpha = (1 - dist / mouse.radius) * 0.5;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(196, 136, 34, ${alpha * 0.55})`;
-          ctx.lineWidth = 1.2;
-          ctx.stroke();
-        }
-      }
-    }
-
-    // Update and draw particles
-    for (let i = 0; i < particles.length; i++) {
-      const p = particles[i];
-      p.x += p.vx;
-      p.y += p.vy;
-
-      if (p.x < 0 || p.x > width) p.vx *= -1;
-      if (p.y < 0 || p.y > height) p.vy *= -1;
-
-      p.pulse += p.pulseSpeed;
-      const r = p.radius + Math.sin(p.pulse) * 0.8;
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, Math.max(0.5, r), 0, Math.PI * 2);
-      ctx.fillStyle = p.color;
-      ctx.shadowBlur = 10;
-      ctx.shadowColor = p.color;
-      ctx.fill();
-      ctx.shadowBlur = 0;
-    }
-
-    requestAnimationFrame(draw);
+    }, { threshold: 0.1 });
+    observer.observe(canvas);
   }
 
+  function draw() {
+    if (!isVisible) {
+      animId = null;
+      return;
+    }
+
+    ctx.clearRect(0, 0, width, height);
+
+    // Subtle connection lines (cheap distance calculation)
+    const pLen = particles.length;
+    for (let i = 0; i < pLen; i++) {
+      const pi = particles[i];
+      for (let j = i + 1; j < pLen; j++) {
+        const pj = particles[j];
+        const dx = pi.x - pj.x;
+        const dy = pi.y - pj.y;
+        if (Math.abs(dx) > 90 || Math.abs(dy) > 90) continue; // Early exit
+        const distSq = dx * dx + dy * dy;
+
+        if (distSq < 8100) { // 90^2
+          const alpha = (1 - Math.sqrt(distSq) / 90) * 0.2;
+          ctx.beginPath();
+          ctx.moveTo(pi.x, pi.y);
+          ctx.lineTo(pj.x, pj.y);
+          ctx.strokeStyle = `rgba(94, 39, 132, ${alpha})`;
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+
+      // Update particle position
+      pi.x += pi.vx;
+      pi.y += pi.vy;
+      if (pi.x < 0 || pi.x > width) pi.vx *= -1;
+      if (pi.y < 0 || pi.y > height) pi.vy *= -1;
+
+      // Draw particle (zero shadowBlur for 60fps smoothness)
+      ctx.beginPath();
+      ctx.arc(pi.x, pi.y, pi.radius, 0, Math.PI * 2);
+      ctx.fillStyle = pi.color;
+      ctx.fill();
+    }
+
+    animId = requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize, { passive: true });
   resize();
   draw();
 }
