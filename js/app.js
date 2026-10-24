@@ -2194,6 +2194,16 @@ function initHeroVideoPlayer() {
     if (videoControlsTimeout) clearTimeout(videoControlsTimeout);
   });
 
+  // Resilient multi-path fallback for GitHub Pages (assets/videos vs root)
+  vid.addEventListener('error', () => {
+    const current = vid.currentSrc || '';
+    if (!current.includes('fallback=root')) {
+      vid.src = 'school-hero.mp4?fallback=root';
+      vid.load();
+      vid.play().catch(() => {});
+    }
+  });
+
   // Start video playback (standard muted autoplay)
   const tryAutoplay = () => {
     const playPromise = vid.play();
