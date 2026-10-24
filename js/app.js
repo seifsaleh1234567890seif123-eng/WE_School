@@ -1,3 +1,39 @@
+
+// ==========================================================================
+// Official Admission Period Enforcement (فترة التقديم المعتمدة رسمياً)
+// ==========================================================================
+const ADMISSION_PERIOD = {
+  // Start: 1 July 2026 at 00:00:00 Cairo Time
+  startDate: new Date('2026-07-01T00:00:00+03:00'),
+  // End: 15 August 2026 at 23:59:59 Cairo Time
+  endDate: new Date('2026-08-15T23:59:59+03:00'),
+  startFormattedAr: '1 يوليو 2026',
+  endFormattedAr: '15 أغسطس 2026',
+  startFormattedEn: 'July 1, 2026',
+  endFormattedEn: 'August 15, 2026'
+};
+
+function checkAdmissionWindow() {
+  const now = new Date();
+  if (now < ADMISSION_PERIOD.startDate) {
+    return {
+      isOpen: false,
+      status: 'EARLY',
+      messageAr: 'عذراً، لم يبدأ بعد موعد فتح باب التقديم لمدارس WE للتكنولوجيا التطبيقية لعام 2026/2027. يبدأ التقديم الرسمي اعتباراً من ' + ADMISSION_PERIOD.startFormattedAr + ' وحتى ' + ADMISSION_PERIOD.endFormattedAr + '.',
+      messageEn: 'Admissions for the 2026/2027 academic year have not opened yet. The official application window runs from ' + ADMISSION_PERIOD.startFormattedEn + ' until ' + ADMISSION_PERIOD.endFormattedEn + '.'
+    };
+  }
+  if (now > ADMISSION_PERIOD.endDate) {
+    return {
+      isOpen: false,
+      status: 'EXPIRED',
+      messageAr: 'عذراً، تم غلق باب التقديم لمدارس WE للتكنولوجيا التطبيقية لعام 2026/2027 حيث انتهت فترة التقديم المحددة في ' + ADMISSION_PERIOD.endFormattedAr + '.',
+      messageEn: 'The application period for WE Applied Technology Schools closed on ' + ADMISSION_PERIOD.endFormattedEn + '.'
+    };
+  }
+  return { isOpen: true };
+}
+
 // ==========================================================================
 // WE APPLIED TECHNOLOGY SCHOOLS - Interactive Application Logic
 // 100% Bilingual Translation Engine (Arabic / English), Digital Arc,
@@ -27,6 +63,7 @@ const i18n = {
     navSpecs: "التخصصات",
     navSchools: "الفروع",
     navAdmission: "شروط القبول",
+    navCurriculum: "الخطة الدراسية",
     navComparison: "لماذا WE؟",
     navVideo: "فيديو المدرسة",
     navNews: "الأخبار",
@@ -37,7 +74,7 @@ const i18n = {
     trackModalSub: "ادخل كود التقديم (مثل WE-2026-884102) أو الرقم القومي للطالب",
     trackInputLabel: "كود التقديم أو الرقم القومي (14 رقم):",
     footerTrack: "🔍 استعلام عن نتيجة القبول",
-    btnApplyNow: "قدّم الآن 🚀",
+    btnApplyNow: "قدّم الآن",
     btnExploreSpecs: "استكشف التخصصات",
     btnCheckEligibility: "احسب فرصتك للقبول 🎯",
     btnFindBranch: "أقرب فرع لك",
@@ -55,7 +92,7 @@ const i18n = {
     videoTab2Title: "جولة مصورة داخل المعامل والفصول",
     videoTab2Desc: "مشاهد حية للطلاب والتجهيزات التقنية المتقدمة",
     videoMeta1Title: "شراكة حكومية دولية",
-    videoMeta1Sub: "وزارة الاتصالات • وزارة التعليم • WE",
+    videoMeta1Sub: "وزارة الاتصالات • وزارة التربية والتعليم • WE • وكالة جلاجسي",
     videoMeta2Title: "تغطية شاملة",
     videoMeta2Sub: "27 محافظة • 5 تخصصات تكنولوجية",
     videoMeta3Title: "اعتماد وتوظيف",
@@ -100,7 +137,7 @@ const i18n = {
     // Specializations
     specsTag: "مسارات احترافية للمستقبل",
     specsTitle: "5 تخصصات تكنولوجية تواكب وظائف الغد",
-    specsSubtitle: "مناهج حديثة تم تصميمها بالتعاون مع أساتذة الجامعات والخبراء العالميين في مجالات العمارة الرقمية وهندسة البرمجيات والأمن السيبراني.",
+    specsSubtitle: "مناهج حديثة تم تصميمها بالتعاون مع أساتذة الجامعات والخبراء العالميين في مجالات تكنولوجيا الاتصالات وهندسة البرمجيات والأمن السيبراني والذكاء الاصطناعي.",
     topicsCovered: "أبرز محاور الدراسة والتدريب:",
     careerOpportunities: "الفرص الوظيفية للخريج:",
     industryCerts: "الشهادات المهنية المعتمدة:",
@@ -145,7 +182,7 @@ const i18n = {
     compSubtitle: "مقارنة علمية وعملية توضح الفارق الجوهري بين مدارس WE والثانوية العامة والتعليم الفني العادي.",
     swipeHint: "👈 اسحب الجدول أفقياً للمقارنة الكاملة 👉",
     compColCriteria: "معيار المقارنة",
-    compColWe: "مدارس WE للتكنولوجيا التطبيقية 🚀",
+    compColWe: "مدارس WE للتكنولوجيا التطبيقية",
     compColThanawya: "الثانوية العامة التقليدية 📚",
     compColVocational: "التعليم الفني العادي ⚙️",
     
@@ -188,7 +225,7 @@ const i18n = {
     modalStep3Sub: "حدد ترتيب التخصصات المفضلة لديك",
     modalPref1Label: "الرغبة الأولى:",
     modalPref2Label: "الرغبة الثانية:",
-    modalBtnSubmit: "تأكيد وإرسال الطلب 🚀",
+    modalBtnSubmit: "تأكيد وإرسال الطلب",
     
     modalSuccessTitle: "تم تسجيل طلبك بنجاح!",
     modalSuccessDesc: "تم تسجيل بياناتك المبدئية بنجاح في قاعدة بيانات مدارس WE للتكنولوجيا التطبيقية. كود المتابعة الخاص بك:",
@@ -203,14 +240,14 @@ const i18n = {
     footerSpecArts: "الفنون الرقمية والوسائط",
     
     // Footer
-    footerDesc: "مدارس WE للتكنولوجيا التطبيقية، أول وأكبر مدارس ثانوية تكنولوجية معتمدة دولياً في مصر متخصصة في العمارة الرقمية والشبكات والبرمجيات والذكاء الاصطناعي.",
-    footerHotline: "📞 الخط الساخن الموحد: 111 أو 155",
+    footerDesc: "مدارس WE للتكنولوجيا التطبيقية، أول وأكبر مدارس ثانوية تكنولوجية معتمدة دولياً في مصر متخصصة في هندسة وتكنولوجيا الاتصالات، الشبكات، الأمن السيبراني، وتطوير البرمجيات.",
+    footerHotline: "📞 خدمة العملاء والاستفسارات: 01501112222",
     footerQuickLinks: "روابط سريعة",
     footerSpecialties: "التخصصات التقنية",
     footerContact: "المقر والدعم",
     footerAddr1: "📍 جمهورية مصر العربية - القاهرة",
     footerAddr2: "🏢 وزارة الاتصالات - القرية الذكية",
-    footerAddr3: "🌐 شراكة: المصرية للاتصالات WE",
+    footerAddr3: "🌐 الشركاء: المصرية للاتصالات WE • الشريك الصناعي وكالة جلاجسي",
     footerAddr4: "🕒 المواعيد: الأحد إلى الخميس (8ص - 3م)",
     footerAddr5: "✉️ البريد: info@we-ats.edu.eg",
     footerBadgeBottom: "تصميم فائق التطور بمعايير الويب العالمية",
@@ -225,6 +262,7 @@ const i18n = {
     navSpecs: "Majors",
     navSchools: "Branches",
     navAdmission: "Admissions",
+    navCurriculum: "Curriculum",
     navComparison: "Why WE?",
     navVideo: "Video",
     navNews: "News",
@@ -235,7 +273,7 @@ const i18n = {
     trackModalSub: "Enter Application Code (e.g. WE-2026-884102) or National ID",
     trackInputLabel: "Application Code or 14-digit National ID:",
     footerTrack: "🔍 Check Admission Status",
-    btnApplyNow: "Apply Now 🚀",
+    btnApplyNow: "Apply Now",
     btnExploreSpecs: "Explore Majors",
     btnCheckEligibility: "Check Eligibility 🎯",
     btnFindBranch: "Find Nearest Campus",
@@ -253,7 +291,7 @@ const i18n = {
     videoTab2Title: "Live Campus & Labs Tour",
     videoTab2Desc: "Real footage of students inside high-tech classrooms & facilities",
     videoMeta1Title: "Strategic Partnership",
-    videoMeta1Sub: "MCIT • MOETE • Telecom Egypt (WE)",
+    videoMeta1Sub: "MCIT • MOETE • Telecom Egypt (WE) • Galaxy Agency",
     videoMeta2Title: "Nationwide Presence",
     videoMeta2Sub: "27 Governorates • 5 Technology Tracks",
     videoMeta3Title: "Accredited Hiring",
@@ -343,7 +381,7 @@ const i18n = {
     compSubtitle: "Scientific and practical comparison highlighting the key advantages over general secondary and conventional vocational schools.",
     swipeHint: "👈 Swipe table horizontally to view full comparison 👉",
     compColCriteria: "Evaluation Criteria",
-    compColWe: "WE Applied Technology Schools 🚀",
+    compColWe: "WE Applied Technology Schools",
     compColThanawya: "Standard General Secondary 📚",
     compColVocational: "Traditional Vocational School ⚙️",
     
@@ -386,7 +424,7 @@ const i18n = {
     modalStep3Sub: "Select your desired order of study tracks",
     modalPref1Label: "First Preference:",
     modalPref2Label: "Second Preference:",
-    modalBtnSubmit: "Confirm & Submit Application 🚀",
+    modalBtnSubmit: "Confirm & Submit Application",
     
     modalSuccessTitle: "Application Submitted Successfully!",
     modalSuccessDesc: "Your registration details have been securely recorded in the WE ATS admission portal. Your unique Tracking Code is:",
@@ -401,14 +439,14 @@ const i18n = {
     footerSpecArts: "Digital Arts & Multimedia",
     
     // Footer
-    footerDesc: "WE Applied Technology Schools: Egypt's premier state-sponsored technical institutions specializing in Digital Architecture, Cybersecurity, AI, and Software Engineering.",
-    footerHotline: "📞 Unified Hotline: 111 or 155",
+    footerDesc: "WE Applied Technology Schools: Egypt's premier state-sponsored technical institutions specializing in Telecommunications, Cybersecurity, AI, and Software Engineering.",
+    footerHotline: "📞 Customer Support: 01501112222",
     footerQuickLinks: "Quick Links",
     footerSpecialties: "Technical Majors",
     footerContact: "Headquarters & Support",
     footerAddr1: "📍 Arab Republic of Egypt - Cairo",
     footerAddr2: "🏢 Ministry of CIT - Smart Village",
-    footerAddr3: "🌐 Partnership: Telecom Egypt (WE)",
+    footerAddr3: "🌐 Partners: Telecom Egypt (WE) • Industrial Partner Galaxy Agency",
     footerAddr4: "🕒 Hours: Sun to Thu (8 AM - 3 PM)",
     footerAddr5: "✉️ Email: info@we-ats.edu.eg",
     footerBadgeBottom: "Engineered with World-Class Web Standards",
@@ -421,7 +459,7 @@ const comparisonData = {
   ar: [
     {
       criteria: "المناهج واللغة",
-      we: "مناهج دولية باللغة الإنجليزية في أحدث علوم التكنولوجيا والعمارة الرقمية",
+      we: "مناهج دولية باللغة الإنجليزية في أحدث علوم هندسة الاتصالات وتكنولوجيا المعلومات",
       thanawya: "مناهج تقليدية نظرية تعتمد على الحفظ والتلقين",
       vocational: "مناهج ورقية تقليدية قديمة لا تواكب السوق"
     },
@@ -604,7 +642,8 @@ document.addEventListener('DOMContentLoaded', () => {
   try { initHeroVideoPlayer(); } catch (e) { console.warn('initHeroVideoPlayer:', e); }
   try { initCounters(); } catch (e) { console.warn('initCounters:', e); }
   try { initEventListeners(); } catch (e) { console.warn('initEventListeners:', e); }
-  try { initCalculator(); } catch (e) { console.warn('initCalculator:', e); }
+  try { renderCurriculumSection(); } catch(e){}
+    try { initCalculator(); } catch (e) { console.warn('initCalculator:', e); }
   try { initCyberIntro(); } catch (e) { console.warn('initCyberIntro:', e); }
   try { initScrollProgressBar(); } catch (e) { console.warn('initScrollProgressBar:', e); }
   try { initScrollReveal(); } catch (e) { console.warn('initScrollReveal:', e); }
@@ -621,24 +660,7 @@ function initParticles() {
 // ==========================================================================
 // High-Speed Cyber Entrance Portal (Snappy, Futuristic & Lightweight)
 // ==========================================================================
-function initCyberIntro() {
-  const portal = document.getElementById('cyber-intro-portal');
-  if (!portal) return;
-
-  // If already opened by inline runner, ensure clean state
-  if (portal.classList.contains('intro-opened') || portal.style.display === 'none') {
-    return;
-  }
-
-  // Failsafe: if inline runner hasn't finished, complete it
-  if (typeof window.finishIntroImmediately === 'function') {
-    setTimeout(() => {
-      if (portal && !portal.classList.contains('intro-opened')) {
-        window.finishIntroImmediately();
-      }
-    }, 400);
-  }
-}
+function initCyberIntro() { /* Intro removed */ }
 
 function finishIntroImmediately() {
   if (typeof window.finishIntroImmediately === 'function') {
@@ -652,18 +674,7 @@ function finishIntroImmediately() {
   }
 }
 
-function replayIntro() {
-  const portal = document.getElementById('cyber-intro-portal');
-  if (!portal) return;
-  portal.classList.remove('intro-opened');
-  portal.style.removeProperty('display');
-  portal.style.removeProperty('opacity');
-  portal.style.pointerEvents = 'auto';
-  window.scrollTo({ top: 0, behavior: 'instant' });
-  if (typeof window.startInlineIntro === 'function') {
-    window.startInlineIntro();
-  }
-}
+function replayIntro() { /* Intro removed */ }
 
 // Gentle Web Audio API synthesizer for sci-fi power sound (no audio files needed!)
 function playSciFiChime() {
@@ -780,6 +791,7 @@ function applyLanguage(lang) {
   renderComparisonTable();
   renderNewsSection();
   renderFaqSection();
+    renderCurriculumSection();
   populateCalculatorGovs();
   updateModalSelectOptions();
   refreshScrollReveal();
@@ -1152,7 +1164,7 @@ function initCalculator() {
         ` : ''}
         ${eligible ? `
           <button class="btn btn-primary btn-sm" onclick="openApplicationModal()" style="margin-top: 0.3rem;">
-            ${isAr ? 'بدء استمارة التقديم فوراً 🚀' : 'Start Application Now 🚀'}
+            ${isAr ? 'بدء استمارة التقديم فوراً' : 'Start Application Now'}
           </button>
         ` : ''}
       `;
@@ -1166,7 +1178,7 @@ function initCalculator() {
         <div style="font-size: 1rem; font-weight: 700; margin-bottom: 0.8rem;">
           ${eligible ? (isAr ? `🎉 مبارك! مجموعك (${score} من 280) مؤهل للتقديم بمحافظة ${gov}!` : `🎉 Congratulations! Eligible for ${gov}!`) : (isAr ? '⚠️ المجموع أقل من 225 أو السن يتجاوز 18 عاماً.' : 'Ineligible')}
         </div>
-        ${eligible ? `<button class="btn btn-primary btn-sm" onclick="openApplicationModal()">${isAr ? 'بدء التقديم 🚀' : 'Apply Now 🚀'}</button>` : ''}
+        ${eligible ? `<button class="btn btn-primary btn-sm" onclick="openApplicationModal()">${isAr ? 'بدء التقديم' : 'Apply Now'}</button>` : ''}
       `;
     }
   });
@@ -1178,6 +1190,15 @@ function openApplicationModal(preferredId = '') {
   if (navMenu && navMenu.classList.contains('open')) {
     navMenu.classList.remove('open');
   }
+
+  // Enforce admission period window
+  const windowCheck = checkAdmissionWindow();
+  if (!windowCheck.isOpen) {
+    const isAr = currentLang === 'ar';
+    alert((isAr ? '⛔ تنبيه موعد التقديم:\n\n' : '⛔ Admission Notice:\n\n') + (isAr ? windowCheck.messageAr : windowCheck.messageEn));
+    return;
+  }
+
   const modal = document.getElementById('application-modal');
   if (modal) {
     modal.classList.add('active');
@@ -1372,6 +1393,12 @@ async function nextAppStep() {
 
 // Submit Final Application with OTP Code
 async function submitVerifiedApplication() {
+  const windowCheck = checkAdmissionWindow();
+  if (!windowCheck.isOpen) {
+    const isAr = currentLang === 'ar';
+    alert((isAr ? '⛔ تنبيه موعد التقديم:\n\n' : '⛔ Admission Notice:\n\n') + (isAr ? windowCheck.messageAr : windowCheck.messageEn));
+    return;
+  }
   const otpInput = document.getElementById('app-otp-code');
   const otpCode = (otpInput ? otpInput.value : '').trim();
   const otpErrBox = document.getElementById('app-otp-error');
@@ -1462,7 +1489,7 @@ async function submitVerifiedApplication() {
       schoolNameAr: schoolName,
       schoolNameEn: schoolObj ? schoolObj.nameEn : schoolName,
       prepScore: payload.prepScore,
-      specializationAr: 'العمارة الرقمية وهندسة البرمجيات',
+      specializationAr: 'تكنولوجيا الاتصالات وهندسة البرمجيات',
       specializationEn: 'Digital Architecture & Software',
       statusMeta: {
         color: '#00E676',
@@ -1787,7 +1814,7 @@ function renderQuizQuestion() {
             : 'Outstanding performance showing great readiness for official WE ATS aptitude tests!'}
         </p>
         <button class="btn btn-primary" onclick="closeQuizModal(); openApplicationModal();">
-          ${isAr ? 'التقديم للمدارس الآن 🚀' : 'Apply to WE Schools Now 🚀'}
+          ${isAr ? 'التقديم للمدارس الآن' : 'Apply to WE Schools Now'}
         </button>
       </div>
     `;
@@ -2078,8 +2105,41 @@ function updateHeroAudioUI() {
   }
 }
 
+
+  // Guarantee audio unmuting on first user interaction if browser blocked audio autoplay
+  let userInteractedWithPage = false;
+  function armAudioOnFirstGesture() {
+    if (userInteractedWithPage) return;
+    userInteractedWithPage = true;
+    const vid = document.getElementById('top-hero-video');
+    if (vid) {
+      vid.muted = false;
+      vid.volume = 1.0;
+      updateHeroAudioUI();
+    }
+  }
+  document.addEventListener('click', armAudioOnFirstGesture, { once: true, passive: true });
+  document.addEventListener('touchstart', armAudioOnFirstGesture, { once: true, passive: true });
+
 function initHeroVideoPlayer() {
   const vid = document.getElementById('top-hero-video');
+  if (vid) {
+    // Enable sound by default
+    vid.muted = false;
+    vid.volume = 1.0;
+    updateHeroAudioUI();
+
+    // Attempt to play with sound, or fallback to user interaction if browser policy blocks unmuted autoplay
+    const playPromise = vid.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Autoplay with sound prevented by browser; allow user to click play/sound button
+        vid.muted = true;
+        vid.play().catch(() => {});
+        updateHeroAudioUI();
+      });
+    }
+  }
   const container = document.querySelector('.fullwidth-video-container');
   const controlsBar = document.getElementById('hero-video-controls');
   const centerPlay = document.getElementById('video-center-play');
@@ -2204,3 +2264,206 @@ function initHeroVideoPlayer() {
 // Global aliases for full compatibility
 function updateHeroVideoLabels() {}
 function switchSchoolVideo(type) {}
+
+
+// ==========================================================================
+// Curriculum Section Dynamic Bilingual Renderer (Arabic & English)
+// ==========================================================================
+const curriculumData = {
+  ar: {
+    tag: "الخطة الدراسية والمناهج الرسمية المعتمدة",
+    title: "المواد الدراسية المقررة في السنوات الثلاث",
+    subtitle: "المقررات الرسمية المعتمدة لمدارس WE للتكنولوجيا التطبيقية بالشراكة مع وزارة التربية والتعليم والشركة المصرية للاتصالات WE ووكالة جلاجسي.",
+    year1: {
+      title: "الصف الأول الثانوي",
+      badge: "السنة الأولى",
+      desc: "دراسة موحدة لجميع الطلاب لتأسيس القاعدة العلمية والتكنولوجية والهندسية قبل الانتقال لاختيار التخصص.",
+      subheading: "📚 المواد المقررة في سنة أولى:",
+      subjects: [
+        "📖 <b>لغة عربية</b>",
+        "🕌 <b>تربية دينية</b>",
+        "📐 <b>ماث (Mathematics)</b>",
+        "⚡ <b>فيزياء (Physics)</b>",
+        "🇬🇧 <b>لغة إنجليزية (English)</b>",
+        "💻 <b>تكنولوجيا المعلومات (IT)</b>",
+        "🏛️ <b>ديجيتال ارك (Digital Arc)</b>",
+        "💼 <b>ريادة أعمال (Entrepreneurship)</b>",
+        "🌍 <b>دراسات اجتماعية</b>",
+        "🏆 <b>مشروع كابستون (Capstone Project)</b>"
+      ]
+    },
+    year2: {
+      title: "الصف الثاني الثانوي",
+      badge: "سنة اختيار التخصص 🎯",
+      desc: "<b>في الصف الثاني يختار الطالب تخصصاً واحداً من التخصصات الأربعة</b> بجانب دراسة المواد الأساسية ومشروع الكابستون.",
+      subheading: "🎯 المواد المقررة في سنة ثانية:",
+      subjects: [
+        "📖 <b>لغة عربية</b>",
+        "🕌 <b>تربية دينية</b>",
+        "📐 <b>ماث (Mathematics)</b>",
+        "⚡ <b>فيزياء (Physics)</b>",
+        "🇬🇧 <b>لغة إنجليزية (English)</b>",
+        "🎯 <b>مادة التخصص (يختار الطالب تخصصاً من 4 تخصصات):</b><div style='margin-top: 0.35rem; padding-right: 0.8rem; font-size: 0.86rem; line-height: 1.6; opacity: 0.95;'>1. الشبكات والأمن السيبراني<br>2. تطوير المواقع والبرمجيات<br>3. الذكاء الاصطناعي وتحليل البيانات<br>4. الفنون والوسائط الرقمية</div>",
+        "💼 <b>ريادة أعمال (Entrepreneurship)</b>",
+        "🌍 <b>دراسات اجتماعية</b>",
+        "🏆 <b>مشروع كابستون (Capstone Project)</b>"
+      ]
+    },
+    year3: {
+      title: "الصف الثالث الثانوي",
+      badge: "سنة التخرج 🎓",
+      desc: "<b>يكمل الطالب في تخصصه، ويُضاف إلى المقررات مادة الاقتصاد</b> لإعداد الخريج لسوق العمل والالتحاق بالجامعات.",
+      subheading: "📈 المواد المقررة في سنة ثالثة (سنة التخرج):",
+      subjects: [
+        "📖 <b>لغة عربية</b>",
+        "🕌 <b>تربية دينية</b>",
+        "📐 <b>ماث (Mathematics)</b>",
+        "⚡ <b>فيزياء (Physics)</b>",
+        "🇬🇧 <b>لغة إنجليزية (English)</b>",
+        "🎯 <b>مادة التخصص (استكمال وتعمق في التخصص المختار)</b>",
+        "📊 <b>اقتصاد (Economics)</b>",
+        "🌍 <b>دراسات اجتماعية</b>",
+        "💼 <b>ريادة أعمال (Entrepreneurship)</b>",
+        "🏆 <b>مشروع كابستون للتخرج (Graduation Capstone Project)</b>"
+      ]
+    }
+  },
+  en: {
+    tag: "Accredited Study Plan & Official Curricula",
+    title: "Official Academic Subjects Across the 3 Years",
+    subtitle: "Official curricula for WE Applied Technology Schools in partnership with MOETE, Telecom Egypt (WE), and Galaxy Agency.",
+    year1: {
+      title: "1st Secondary Year",
+      badge: "Foundation Year",
+      desc: "Unified curriculum for all students building solid foundational scientific, technical, and engineering competencies.",
+      subheading: "📚 Core Subjects for Year 1:",
+      subjects: [
+        "📖 <b>Arabic Language</b>",
+        "🕌 <b>Religious Education</b>",
+        "📐 <b>Mathematics</b>",
+        "⚡ <b>Physics</b>",
+        "🇬🇧 <b>English Language</b>",
+        "💻 <b>Information Technology (IT)</b>",
+        "🏛️ <b>Digital Arc</b>",
+        "💼 <b>Entrepreneurship</b>",
+        "🌍 <b>Social Studies</b>",
+        "🏆 <b>Capstone Project</b>"
+      ]
+    },
+    year2: {
+      title: "2nd Secondary Year",
+      badge: "Major Selection Year 🎯",
+      desc: "<b>In Year 2, students select their specialized major from 4 available tracks</b> alongside continuous core subjects.",
+      subheading: "🎯 Core Subjects & Major for Year 2:",
+      subjects: [
+        "📖 <b>Arabic Language</b>",
+        "🕌 <b>Religious Education</b>",
+        "📐 <b>Mathematics</b>",
+        "⚡ <b>Physics</b>",
+        "🇬🇧 <b>English Language</b>",
+        "🎯 <b>Specialized Track Subject (Choose 1 of 4 Majors):</b><div style='margin-top: 0.35rem; padding-left: 0.8rem; font-size: 0.86rem; line-height: 1.6; opacity: 0.95;'>1. Networks & Cybersecurity<br>2. Web & Software Development<br>3. AI & Data Analytics<br>4. Digital Arts & Multimedia</div>",
+        "💼 <b>Entrepreneurship</b>",
+        "🌍 <b>Social Studies</b>",
+        "🏆 <b>Capstone Project</b>"
+      ]
+    },
+    year3: {
+      title: "3rd Secondary Year",
+      badge: "Graduation Year 🎓",
+      desc: "<b>Students continue in their chosen major with the addition of Economics</b> preparing for universities and career paths.",
+      subheading: "📈 Core Subjects for Year 3 (Graduation):",
+      subjects: [
+        "📖 <b>Arabic Language</b>",
+        "🕌 <b>Religious Education</b>",
+        "📐 <b>Mathematics</b>",
+        "⚡ <b>Physics</b>",
+        "🇬🇧 <b>English Language</b>",
+        "🎯 <b>Specialized Track Subject (In-Depth Major Study)</b>",
+        "📊 <b>Economics (Added in Year 3)</b>",
+        "🌍 <b>Social Studies</b>",
+        "💼 <b>Entrepreneurship</b>",
+        "🏆 <b>Graduation Capstone Project</b>"
+      ]
+    }
+  }
+};
+
+function renderCurriculumSection() {
+  const container = document.getElementById('curriculum-container');
+  if (!container) return;
+
+  const data = curriculumData[currentLang] || curriculumData.ar;
+  const isAr = currentLang === 'ar';
+
+  container.innerHTML = `
+    <div class="section-header" style="text-align: center; margin-bottom: 3.5rem;">
+      <span class="section-tag" style="background: rgba(94, 39, 132, 0.12); color: var(--we-purple); padding: 0.4rem 1.2rem; border-radius: 50px; font-weight: 800; font-size: 0.92rem; display: inline-block; margin-bottom: 0.8rem;">
+        ${data.tag}
+      </span>
+      <h2 class="section-title" style="font-size: clamp(1.9rem, 3.2vw, 2.6rem); font-weight: 900; margin-bottom: 0.9rem;">
+        ${data.title}
+      </h2>
+      <p class="section-subtitle" style="max-width: 720px; margin: 0 auto; line-height: 1.8; font-size: 1.05rem;">
+        ${data.subtitle}
+      </p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+      
+      <!-- Year 1 -->
+      <div class="curriculum-card">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; border-bottom: 2px solid var(--we-purple); padding-bottom: 0.9rem;">
+          <h3>${data.year1.title}</h3>
+          <span style="background: var(--we-purple); color: #fff; padding: 0.35rem 0.85rem; border-radius: 20px; font-size: 0.82rem; font-weight: 800;">
+            ${data.year1.badge}
+          </span>
+        </div>
+        <p class="card-desc">${data.year1.desc}</p>
+        <div style="margin-top: 0.5rem;">
+          <div class="card-subheading">${data.year1.subheading}</div>
+          <ul class="curriculum-list">
+            ${data.year1.subjects.map(s => `<li>${s}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Year 2 -->
+      <div class="curriculum-card featured">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; border-bottom: 2px solid var(--we-gold); padding-bottom: 0.9rem;">
+          <h3>${data.year2.title}</h3>
+          <span style="background: var(--we-gold); color: #000; padding: 0.35rem 0.85rem; border-radius: 20px; font-size: 0.82rem; font-weight: 900;">
+            ${data.year2.badge}
+          </span>
+        </div>
+        <p class="card-desc">${data.year2.desc}</p>
+        <div style="margin-top: 0.5rem;">
+          <div class="card-subheading">${data.year2.subheading}</div>
+          <ul class="curriculum-list">
+            ${data.year2.subjects.map(s => `<li>${s}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Year 3 -->
+      <div class="curriculum-card">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; border-bottom: 2px solid var(--we-green); padding-bottom: 0.9rem;">
+          <h3>${data.year3.title}</h3>
+          <span style="background: var(--we-green); color: #fff; padding: 0.35rem 0.85rem; border-radius: 20px; font-size: 0.82rem; font-weight: 800;">
+            ${data.year3.badge}
+          </span>
+        </div>
+        <p class="card-desc">${data.year3.desc}</p>
+        <div style="margin-top: 0.5rem;">
+          <div class="card-subheading">${data.year3.subheading}</div>
+          <ul class="curriculum-list">
+            ${data.year3.subjects.map(s => `<li>${s}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  `;
+}
+
+window.toggleLanguage = toggleLanguage;
+window.applyLanguage = applyLanguage;

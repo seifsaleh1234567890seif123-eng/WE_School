@@ -6,8 +6,8 @@
   <title data-i18n="siteTitle">مدارس WE للتكنولوجيا التطبيقية | المصرية للاتصالات</title>
   
   <!-- Meta Descriptions & SEO -->
-  <meta name="description" content="البوابة الرسمية المتطورة لمدارس WE للتكنولوجيا التطبيقية في 27 محافظة - الأولى في مصر المتخصصة في ديجيتال ارك والعمارة الرقمية والأمن السيبراني والذكاء الاصطناعي وتطوير البرمجيات بشراكة وزارة الاتصالات ووزارة التربية والتعليم والمصرية للاتصالات WE.">
-  <meta name="keywords" content="مدارس WE, ديجيتال ارك, مدارس التكنولوجيا التطبيقية, المصرية للاتصالات, الأمن السيبراني, الذكاء الاصطناعي, العمارة الرقمية, تنسيق مدارس we, عناوين مدارس we">
+  <meta name="description" content="البوابة الرسمية المتطورة لمدارس WE للتكنولوجيا التطبيقية في 27 محافظة - الأولى في مصر المتخصصة في هندسة الاتصالات وتكنولوجيا المعلومات والشبكات والأمن السيبراني وتطوير البرمجيات والذكاء الاصطناعي بشراكة وزارة الاتصالات ووزارة التربية والتعليم والمصرية للاتصالات WE.">
+  <meta name="keywords" content="مدارس WE, تكنولوجيا الاتصالات والمعلومات, مدارس التكنولوجيا التطبيقية, المصرية للاتصالات, الأمن السيبراني, الذكاء الاصطناعي, العمارة الرقمية, تنسيق مدارس we, عناوين مدارس we">
   <link rel="icon" type="image/png" href="assets/images/logo-ar.png">
 
   <!-- Preconnect Google Fonts -->
@@ -15,139 +15,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="css/style.css?v=7.0">
+  <link rel="stylesheet" href="css/style.css?v=8.0">
 </head>
 <body>
-
-  <!-- Cinematic Futuristic Cyber Entrance Portal -->
-  <div id="cyber-intro-portal" class="cyber-intro-overlay" onclick="window.finishIntroImmediately && window.finishIntroImmediately()">
-    <div class="shutter shutter-top"></div>
-    <div class="shutter shutter-bottom"></div>
-    <div class="intro-grid-fx"></div>
-
-    <div class="intro-stage" onclick="event.stopPropagation()">
-      <!-- Cyber Hologram Orb & Energy Rings -->
-      <div class="hologram-container">
-        <div class="energy-ring ring-outer"></div>
-        <div class="energy-ring ring-mid"></div>
-        <div class="energy-ring ring-inner"></div>
-        <div class="laser-scanner"></div>
-        <div class="logo-wrapper">
-          <img src="assets/images/logo-ar.png" alt="WE ATS Logo" class="intro-logo">
-        </div>
-      </div>
-
-      <!-- Sci-Fi System Status Readout -->
-      <div class="intro-status-box">
-        <div class="intro-badge">
-          <span class="live-dot"></span>
-          <span>WE APPLIED TECHNOLOGY SCHOOLS</span>
-        </div>
-        <div class="intro-console-text" id="intro-console">
-          > تهيئة شبكات الألياف الضوئية المتقدمة...
-        </div>
-        <div class="intro-meter-container">
-          <div class="intro-meter-bar" id="intro-progress-bar" style="width: 15%;"></div>
-        </div>
-        <div class="intro-percentage-row">
-          <span class="intro-tech-sub">EGYPT 27 GOVERNORATES // 2026</span>
-          <span class="intro-pct" id="intro-percentage">15%</span>
-        </div>
-      </div>
-
-      <!-- Quick Skip Button -->
-      <button class="intro-skip-btn" onclick="window.finishIntroImmediately && window.finishIntroImmediately()" id="intro-skip-btn" aria-label="Skip Intro" type="button">
-        <span>تخطي</span> ⏩
-      </button>
-    </div>
-
-    <!-- Shockwave Flash Burst -->
-    <div class="intro-shockwave" id="intro-shockwave"></div>
-  </div>
-
-  <!-- Bulletproof Self-Contained Intro Runner (Zero-Dependency & Immediate Execution) -->
-  <script>
-    (function() {
-      var portal = document.getElementById('cyber-intro-portal');
-      var bar = document.getElementById('intro-progress-bar');
-      var pct = document.getElementById('intro-percentage');
-      var consoleEl = document.getElementById('intro-console');
-      var shockwave = document.getElementById('intro-shockwave');
-      var isClosed = false;
-      var introTimer = null;
-
-      var messages = [
-        "> تهيئة شبكات الألياف الضوئية المتقدمة...",
-        "> ربط مقرات مدارس WE في 27 محافظة...",
-        "> مزامنة التخصصات التكنولوجية والذكاء الاصطناعي...",
-        "> البوابة الرقمية جاهزة للانطلاق 🚀"
-      ];
-
-      function closePortal() {
-        if (isClosed) return;
-        isClosed = true;
-        if (introTimer) clearInterval(introTimer);
-
-        if (shockwave) shockwave.classList.add('blasting');
-        if (portal) {
-          portal.classList.add('intro-opened');
-          portal.style.pointerEvents = 'none';
-        }
-
-        var hero = document.querySelector('.hero-section');
-        if (hero) hero.classList.add('hero-revealed');
-
-        setTimeout(function() {
-          if (portal) {
-            portal.style.display = 'none';
-            try { portal.remove(); } catch(e) {}
-          }
-        }, 550);
-      }
-
-      window.finishIntroImmediately = function() {
-        if (bar) bar.style.width = '100%';
-        if (pct) pct.textContent = '100%';
-        if (consoleEl) consoleEl.textContent = '> تم الدخول الفوري 🚀';
-        closePortal();
-      };
-
-      window.startInlineIntro = function() {
-        isClosed = false;
-        var progress = 15;
-        if (bar) bar.style.width = '15%';
-        if (pct) pct.textContent = '15%';
-        if (introTimer) clearInterval(introTimer);
-
-        introTimer = setInterval(function() {
-          var inc = progress < 40 ? 7 : (progress < 75 ? 11 : 16);
-          progress += inc;
-          if (progress > 100) progress = 100;
-
-          if (bar) bar.style.width = progress + '%';
-          if (pct) pct.textContent = progress + '%';
-
-          var msgIdx = progress < 35 ? 0 : (progress < 65 ? 1 : (progress < 90 ? 2 : 3));
-          if (consoleEl) consoleEl.textContent = messages[msgIdx];
-
-          if (progress >= 100) {
-            clearInterval(introTimer);
-            setTimeout(closePortal, 120);
-          }
-        }, 28);
-      };
-
-      // Launch intro animation immediately on DOM parse
-      window.startInlineIntro();
-
-      // ABSOLUTE FAILSAFE: Unconditionally dismiss intro after 1.5 seconds under all conditions
-      setTimeout(function() {
-        if (!isClosed) {
-          window.finishIntroImmediately();
-        }
-      }, 1500);
-    })();
-  </script>
 
   <!-- Glowing Scroll Progress Bar -->
   <div id="scroll-progress-bar" class="scroll-progress-bar"></div>
@@ -163,7 +33,7 @@
       <nav class="nav-menu" id="main-nav-menu">
         <div class="mobile-nav-top-cta">
           <button class="btn btn-primary" onclick="openApplicationModal()" style="width: 100%; font-size: 1.02rem; padding: 0.85rem; font-weight: 800; box-shadow: 0 4px 18px rgba(94, 39, 132, 0.35);">
-            🚀 قدّم الآن (تسجيل طلب جديد 2026)
+            قدّم الآن (تسجيل طلب جديد 2026)
           </button>
         </div>
         <a href="#home" class="nav-link active" data-i18n="navHome">الرئيسية</a>
@@ -171,6 +41,7 @@
         <a href="#specializations" class="nav-link" data-i18n="navSpecs">التخصصات</a>
         <a href="#schools" class="nav-link" data-i18n="navSchools">الفروع</a>
         <a href="#admission" class="nav-link" data-i18n="navAdmission">شروط القبول</a>
+        <a href="#curriculum" class="nav-link" data-i18n="navCurriculum">الخطة الدراسية</a>
         <a href="#comparison" class="nav-link" data-i18n="navComparison">لماذا WE؟</a>
         <a href="#school-video" class="nav-link" data-i18n="navVideo">فيديو المدرسة</a>
         <a href="#news" class="nav-link" data-i18n="navNews">الأخبار</a>
@@ -196,7 +67,7 @@
 
         <!-- Apply CTA (Desktop & Mobile) -->
         <button class="btn btn-primary btn-sm nav-apply-btn" onclick="openApplicationModal()" data-i18n="btnApplyNow">
-          قدّم الآن 🚀
+          قدّم الآن
         </button>
 
         <!-- Mobile Drawer Toggle -->
@@ -212,14 +83,12 @@
     <div class="fullwidth-video-container">
       <video 
         id="top-hero-video" 
-        autoplay 
         loop 
-        muted 
         playsinline 
-        webkit-playsinline="true"
-        x5-playsinline="true"
+        webkit-playsinline="true" 
+        x5-playsinline="true" 
         preload="metadata" 
-        poster="assets/images/students-lab.webp"
+        poster="assets/images/students-lab.webp" 
         class="top-hero-video-player">
         <source src="assets/videos/school-hero.mp4" type="video/mp4">
         <source src="https://we-ats.com/wp-content/uploads/2024/08/video-1.mp4" type="video/mp4">
@@ -245,8 +114,8 @@
 
         <!-- Audio Toggle Button -->
         <button class="vid-cyber-btn vid-sound-btn" id="vid-sound-btn" onclick="toggleHeroVideoAudio()" title="تشغيل / كتم الصوت">
-          <span id="vid-sound-icon">🔇</span>
-          <span id="vid-sound-text">تشغيل الصوت</span>
+          <span id="vid-sound-icon">🔊</span>
+            <span id="vid-sound-text">كتم الصوت</span>
         </button>
       </div>
     </div>
@@ -258,7 +127,7 @@
           <span class="info-icon">🏛️</span>
           <div>
             <div class="info-title" data-i18n="videoMeta1Title">شراكة حكومية دولية</div>
-            <div class="info-sub" data-i18n="videoMeta1Sub">وزارة الاتصالات • وزارة التربية والتعليم • WE</div>
+            <div class="info-sub" data-i18n="videoMeta1Sub">وزارة الاتصالات • وزارة التربية والتعليم • WE • وكالة جلاجسي</div>
           </div>
         </div>
         <div class="top-video-info-item">
@@ -276,7 +145,7 @@
           </div>
         </div>
         <div class="top-video-info-item">
-          <a href="https://youtube.com/@weappliedtechnologyyschools?si=NL1gel4t6ejfIMEC" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="width: 100%; border-color: #ff0033; color: #fff; background: rgba(255, 0, 51, 0.12); justify-content: center;">
+          <a href="https://youtube.com/@weappliedtechnologyyschools?si=AUA1MIeaxlTr4Fsq" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" style="width: 100%; border-color: #ff0033; color: #fff; background: rgba(255, 0, 51, 0.12); justify-content: center;">
             <span>قناة يوتيوب الرسمية</span> 🔴
           </a>
         </div>
@@ -311,7 +180,7 @@
         <!-- CTA Buttons -->
         <div class="hero-cta-group">
           <button class="btn btn-primary" onclick="openApplicationModal()">
-            <span data-i18n="btnApplyNow">قدّم الآن 🚀</span>
+            <span data-i18n="btnApplyNow">قدّم الآن</span>
           </button>
           <button class="btn btn-outline" onclick="openTrackingModal()">
             <span data-i18n="btnTrackApp">استعلم عن حالة قبولك 🔍</span>
@@ -472,7 +341,7 @@
         <span class="section-tag" data-i18n="specsTag">مسارات احترافية للمستقبل</span>
         <h2 class="section-title" data-i18n="specsTitle">5 تخصصات تكنولوجية تواكب وظائف الغد</h2>
         <p class="section-subtitle" data-i18n="specsSubtitle">
-          مناهج حديثة تم تصميمها بالتعاون مع أساتذة الجامعات والخبراء العالميين في مجالات العمارة الرقمية وهندسة البرمجيات والأمن السيبراني.
+          مناهج حديثة تم تصميمها بالتعاون مع أساتذة الجامعات والخبراء العالميين في مجالات تكنولوجيا الاتصالات وهندسة البرمجيات والأمن السيبراني والذكاء الاصطناعي.
         </p>
       </div>
 
@@ -613,6 +482,15 @@
     </div>
   </section>
 
+
+  <!-- Academic Journey & Curricula (Year 1, 2, 3) -->
+  <!-- Academic Journey & Curricula (Year 1, 2, 3) -->
+  <section class="curriculum-section" id="curriculum">
+    <div class="container" id="curriculum-container">
+      <!-- Injected dynamically in Arabic & English -->
+    </div>
+  </section>
+
   <!-- Comparison Matrix (Why WE?) -->
   <section class="comparison-section" id="comparison">
     <div class="container">
@@ -633,7 +511,7 @@
           <thead>
             <tr>
               <th data-i18n="compColCriteria">معيار المقارنة</th>
-              <th class="col-we" data-i18n="compColWe">مدارس WE للتكنولوجيا التطبيقية 🚀</th>
+              <th class="col-we" data-i18n="compColWe">مدارس WE للتكنولوجيا التطبيقية</th>
               <th data-i18n="compColThanawya">الثانوية العامة التقليدية 📚</th>
               <th data-i18n="compColVocational">التعليم الفني العادي ⚙️</th>
             </tr>
@@ -671,6 +549,7 @@
         <div class="partner-logo-item">🏛️ وزارة الاتصالات وتكنولوجيا المعلومات</div>
         <div class="partner-logo-item">📚 وزارة التربية والتعليم والتعليم الفني</div>
         <div class="partner-logo-item">💜 الشركة المصرية للاتصالات WE</div>
+        <div class="partner-logo-item" style="border-color: var(--we-purple); background: rgba(94, 39, 132, 0.12); font-weight: 800;">🚀 الشريك الصناعي: وكالة جلاجسي (Galaxy Agency)</div>
         <div class="partner-logo-item">🌐 Cisco Networking Academy</div>
         <div class="partner-logo-item">📱 Huawei ICT Academy</div>
         <div class="partner-logo-item">☁️ Microsoft & AWS</div>
@@ -783,11 +662,32 @@
 
         <div style="display: flex; gap: 0.8rem; margin-top: 1.4rem;">
           <button type="button" class="btn btn-outline" style="flex: 1;" onclick="prevAppStep()" data-i18n="modalBtnPrev">⬅️ السابق</button>
-          <button type="button" class="btn btn-cyan" id="app-submit-btn" style="flex: 2;" onclick="nextAppStep()">التالي: التحقق من البريد 📩</button>
+          <button type="button" class="btn btn-primary" style="flex: 2;" onclick="nextAppStep()" data-i18n="modalBtnNextStep3">التالي: اختيار التخصص ➡️</button>
         </div>
       </div>
 
-      <!-- Step 3 removed: Specialization assigned by school administration -->
+      <!-- Step 3: Specialization Preferences (Featuring Digital Arc) -->
+      <div id="app-step-3" style="display: none;">
+        <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.4rem;" data-i18n="modalStep3Title">الخطوة 3: ترتيب رغبات التخصص</h3>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.4rem;" data-i18n="modalStep3Sub">حدد ترتيب التخصصات المفضلة لديك</p>
+
+        <div class="calc-form-group">
+          <label data-i18n="modalPref1Label">الرغبة الأولى:</label>
+          <select id="app-pref-1"></select>
+        </div>
+
+        <div class="calc-form-group">
+          <label data-i18n="modalPref2Label">الرغبة الثانية:</label>
+          <select id="app-pref-2"></select>
+        </div>
+
+        <div id="app-form-error" style="display: none; color: #ff0055; background: rgba(255, 0, 85, 0.12); border: 1px solid #ff0055; padding: 0.8rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.9rem; text-align: center;"></div>
+
+        <div style="display: flex; gap: 0.8rem; margin-top: 1.4rem;">
+          <button type="button" class="btn btn-outline" style="flex: 1;" onclick="prevAppStep()" data-i18n="modalBtnPrev">⬅️ السابق</button>
+          <button type="button" class="btn btn-cyan" id="app-submit-btn" style="flex: 2;" onclick="nextAppStep()">التالي: التحقق من البريد 📩</button>
+        </div>
+      </div>
 
       <!-- Step 4 (OTP Verification): Verify Email with 6-Digit Code -->
       <div id="app-step-otp" style="display: none; text-align: center; padding: 0.5rem 0;">
@@ -818,7 +718,7 @@
 
         <div style="display: flex; gap: 0.8rem; margin-top: 1.4rem;">
           <button type="button" class="btn btn-outline" style="flex: 1;" onclick="prevAppStep()">⬅️ السابق</button>
-          <button type="button" class="btn btn-cyan" id="app-verify-btn" style="flex: 2;" onclick="submitVerifiedApplication()">تأكيد الرمز وإتمام التسجيل 🚀</button>
+          <button type="button" class="btn btn-cyan" id="app-verify-btn" style="flex: 2;" onclick="submitVerifiedApplication()">تأكيد الرمز وإتمام التسجيل</button>
         </div>
 
         <div style="margin-top: 1.2rem;">
@@ -905,17 +805,17 @@
         <div class="footer-brand">
           <img src="assets/images/logo-en-white.png" alt="WE ATS Logo" style="height: 42px; width: auto; margin-bottom: 0.8rem;" class="footer-logo-img">
           <p data-i18n="footerDesc">
-            مدارس WE للتكنولوجيا التطبيقية، أول وأكبر مدارس ثانوية تكنولوجية معتمدة دولياً في مصر متخصصة في العمارة الرقمية والشبكات والبرمجيات والذكاء الاصطناعي.
+            مدارس WE للتكنولوجيا التطبيقية، أول وأكبر مدارس ثانوية تكنولوجية معتمدة دولياً في مصر متخصصة في هندسة وتكنولوجيا الاتصالات، الشبكات، الأمن السيبراني، وتطوير البرمجيات.
           </p>
           <div style="font-weight: 900; color: var(--we-gold); margin-bottom: 1rem;" data-i18n="footerHotline">
-            📞 الخط الساخن الموحد: 111 أو 155
+            📞 خدمة العملاء والاستفسارات: 01501112222
           </div>
           <div class="social-links">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram">📷</a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="YouTube">▶️</a>
-            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="TikTok">🎵</a>
+            <a href="https://www.instagram.com/weappliedtechnologyschools?xtok=Z3U1c2xtNndwc204" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram">📷</a>📷</a>
+            <a href="https://youtube.com/@weappliedtechnologyyschools?si=AUA1MIeaxlTr4Fsq" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="YouTube">▶️</a>▶️</a>
+            <a href="https://www.tiktok.com/@weappliedtechschools?_r=1&_t=ZS-9Ap9z5KoZmu" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="TikTok">🎵</a>🎵</a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn">💼</a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Facebook">📘</a>
+            <a href="https://www.facebook.com/share/1bTnGnZqHD/" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Facebook">📘</a>📘</a>
           </div>
         </div>
 
@@ -929,8 +829,7 @@
             <li><a href="#admission" data-i18n="navAdmission">دليل وشروط القبول</a></li>
             <li><a href="javascript:void(0)" onclick="openTrackingModal()" data-i18n="footerTrack">🔍 استعلام عن نتيجة القبول</a></li>
             <li><a href="/admin" target="_blank" style="color: var(--we-gold); font-weight: 700;">🔐 لوحة الإدارة المركزية (Admin)</a></li>
-            <li><a href="javascript:void(0)" onclick="replayIntro()" style="color: var(--we-gold); font-weight: 800; cursor: pointer;">🎬 إعادة مشاهدة الدخلة</a></li>
-          </ul>
+                      </ul>
         </div>
 
         <!-- Specializations Links (Fully Translated) -->
@@ -951,7 +850,7 @@
           <ul class="footer-links" style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.8;">
             <li data-i18n="footerAddr1">📍 جمهورية مصر العربية - القاهرة</li>
             <li data-i18n="footerAddr2">🏢 وزارة الاتصالات - القرية الذكية</li>
-            <li data-i18n="footerAddr3">🌐 شراكة: المصرية للاتصالات WE</li>
+            <li data-i18n="footerAddr3">🌐 الشركاء: المصرية للاتصالات WE • الشريك الصناعي وكالة جلاجسي</li>
             <li data-i18n="footerAddr4">🕒 المواعيد: الأحد إلى الخميس (8ص - 3م)</li>
             <li data-i18n="footerAddr5">✉️ البريد: info@we-ats.edu.eg</li>
           </ul>
@@ -971,7 +870,7 @@
 
   <!-- Floating Action Buttons -->
   <div class="floating-actions">
-    <a href="https://wa.me/201111111111" target="_blank" rel="noopener noreferrer" class="fab fab-whatsapp" aria-label="WhatsApp Contact" title="تواصل واتساب">
+    <a href="https://wa.me/201501112222" target="_blank" rel="noopener noreferrer" class="fab fab-whatsapp" aria-label="WhatsApp Contact" title="تواصل واتساب">
       💬
     </a>
     <button class="fab fab-top" id="fab-scroll-top" onclick="scrollToTop()" aria-label="Scroll to top" title="العودة للأعلى">
@@ -980,8 +879,8 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/schools-data.js?v=7.0"></script>
+  <script src="js/schools-data.js?v=8.0"></script>
   <script src="js/particles.js?v=7.0"></script>
-  <script src="js/app.js?v=7.0"></script>
+  <script src="js/app.js?v=8.0"></script>
 </body>
 </html>

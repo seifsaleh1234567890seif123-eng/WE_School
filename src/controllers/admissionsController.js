@@ -119,6 +119,24 @@ function apply(req, res) {
       gender
     } = req.body;
 
+    
+    // Validate Official Admission Window (1 July 2026 - 15 August 2026)
+    const now = new Date();
+    const admissionStart = new Date('2026-07-01T00:00:00+03:00');
+    const admissionEnd = new Date('2026-08-15T23:59:59+03:00');
+    if (now < admissionStart) {
+      return res.status(400).json({
+        success: false,
+        error: 'عذراً، لم يبدأ بعد موعد فتح باب التقديم لمدارس WE للتكنولوجيا التطبيقية لعام 2026/2027. يبدأ التقديم اعتباراً من 1 يوليو 2026 وحتى 15 أغسطس 2026.'
+      });
+    }
+    if (now > admissionEnd) {
+      return res.status(400).json({
+        success: false,
+        error: 'عذراً، تم غلق باب التقديم لمدارس WE للتكنولوجيا التطبيقية لعام 2026/2027 لانتهاء الفترة المحددة في 15 أغسطس 2026.'
+      });
+    }
+
     // Validate Full Name
     const cleanName = sanitizeString(fullName);
     if (!cleanName || cleanName.split(' ').filter(Boolean).length < 3) {

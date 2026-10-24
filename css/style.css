@@ -3322,3 +3322,140 @@ select option:checked {
     transform: none !important;
   }
 }
+
+
+/* ==========================================================================
+   Curriculum Section Styling - Ultra Clear Contrast in Dark & Light Modes
+   ========================================================================== */
+.curriculum-section {
+  padding: 4.5rem 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: background 0.3s ease;
+}
+
+[data-theme="light"] .curriculum-section {
+  background: #F8F7FD;
+}
+
+[data-theme="dark"] .curriculum-section {
+  background: #0F0924;
+}
+
+.curriculum-card {
+  border-radius: 18px;
+  padding: 2.2rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Light Theme Card Styling */
+[data-theme="light"] .curriculum-card {
+  background: #FFFFFF !important;
+  border: 1px solid #E2D9F3 !important;
+  box-shadow: 0 10px 30px rgba(94, 39, 132, 0.06);
+}
+
+[data-theme="light"] .curriculum-card.featured {
+  border: 2px solid #5E2784 !important;
+  box-shadow: 0 14px 40px rgba(94, 39, 132, 0.12);
+}
+
+/* Dark Theme Card Styling - Fixed High-Contrast Black/Dark Background */
+[data-theme="dark"] .curriculum-card {
+  background: #170E30 !important;
+  border: 1px solid rgba(168, 85, 247, 0.3) !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .curriculum-card.featured {
+  border: 2px solid #9D4EDD !important;
+  box-shadow: 0 15px 45px rgba(157, 78, 221, 0.25);
+}
+
+/* Text Colors with Guaranteed 100% Readability */
+.curriculum-card h3 {
+  font-size: 1.45rem;
+  font-weight: 900;
+  margin: 0;
+}
+
+[data-theme="light"] .curriculum-card h3 {
+  color: #381057 !important;
+}
+
+[data-theme="dark"] .curriculum-card h3 {
+  color: #FFFFFF !important;
+}
+
+.curriculum-card .card-desc {
+  font-size: 0.96rem;
+  line-height: 1.65;
+  margin: 1.1rem 0;
+  font-weight: 500;
+}
+
+[data-theme="light"] .curriculum-card .card-desc {
+  color: #2D253D !important;
+}
+
+[data-theme="dark"] .curriculum-card .card-desc {
+  color: #E2DAF5 !important;
+}
+
+.curriculum-card .card-subheading {
+  font-weight: 800;
+  font-size: 1.02rem;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+[data-theme="light"] .curriculum-card .card-subheading {
+  color: #1A1128 !important;
+}
+
+[data-theme="dark"] .curriculum-card .card-subheading {
+  color: #FFFFFF !important;
+}
+
+.curriculum-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.curriculum-list li {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  padding: 0.65rem 0.9rem;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+[data-theme="light"] .curriculum-list li {
+  background: #F8F5FD;
+  color: #2D253D !important;
+  border-right: 3px solid #5E2784;
+}
+
+[data-theme="light"] .curriculum-list li b {
+  color: #1A1128 !important;
+}
+
+[data-theme="dark"] .curriculum-list li {
+  background: rgba(255, 255, 255, 0.05);
+  color: #F1EDFA !important;
+  border-right: 3px solid #A855F7;
+}
+
+[data-theme="dark"] .curriculum-list li b {
+  color: #FFFFFF !important;
+}
