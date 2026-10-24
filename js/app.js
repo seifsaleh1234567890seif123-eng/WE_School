@@ -1097,32 +1097,8 @@ function populateCalculatorGovs() {
   }
 }
 
-// Update Modal Preferences Select Options on Language Change
-function updateModalSelectOptions() {
-  const pref1 = document.getElementById('app-pref-1');
-  const pref2 = document.getElementById('app-pref-2');
-  if (!pref1 || !pref2) return;
-
-  const isAr = currentLang === 'ar';
-  const options = isAr ? [
-    { value: "digital-arc", label: "ديجيتال ارك (العمارة الرقمية والمدن الذكية)" },
-    { value: "cyber", label: "الشبكات والأمن السيبراني" },
-    { value: "ai", label: "الذكاء الاصطناعي وتحليل البيانات" },
-    { value: "web", label: "تطوير المواقع والبرمجيات" },
-    { value: "arts", label: "الفنون الرقمية والوسائط" }
-  ] : [
-    { value: "digital-arc", label: "Digital Arc (Architecture & Smart Cities)" },
-    { value: "cyber", label: "Networks & Cybersecurity" },
-    { value: "ai", label: "AI & Big Data Analytics" },
-    { value: "web", label: "Web & Software Development" },
-    { value: "arts", label: "Digital Arts & UI/UX" }
-  ];
-
-  const html = options.map(o => `<option value="${o.value}">${o.label}</option>`).join('');
-  pref1.innerHTML = html;
-  pref2.innerHTML = html;
-  if (pref2.options.length > 1) pref2.selectedIndex = 1;
-}
+// Step 3 (specialization selection) removed — specialization is assigned by school administration
+function updateModalSelectOptions() { /* No-op: specialization step removed */ }
 
 // Admission Score Calculator
 function initCalculator() {
@@ -1301,11 +1277,10 @@ async function nextAppStep() {
       return;
     }
 
+    // Skip step 3 (specialization removed): go directly to OTP email verification
     document.getElementById('app-step-2').style.display = 'none';
-    appCurrentStep = 3;
-    document.getElementById('app-step-3').style.display = 'block';
-    updateStepBubbles();
-    return;
+    appCurrentStep = 3; // triggers OTP logic below
+    // fall-through to step 3 OTP handler
   }
 
   // Step 3 -> Send Email OTP Verification Code
@@ -1332,8 +1307,7 @@ async function nextAppStep() {
         throw new Error(result.error || 'فشل إرسال رمز التحقق إلى البريد.');
       }
 
-      // Transition to OTP Step
-      document.getElementById('app-step-3').style.display = 'none';
+      // Transition to OTP Step (step 3 was removed, step-2 already hidden above)
       appCurrentStep = 4;
       const otpStepEl = document.getElementById('app-step-otp');
       if (otpStepEl) otpStepEl.style.display = 'block';
@@ -1363,7 +1337,6 @@ async function nextAppStep() {
     } catch (err) {
       // Fallback for Cloud Demo / Static Hosting (Vercel, Netlify, GitHub Pages)
       console.warn('API unavailable, switching to Cloud Demo OTP:', err.message);
-      document.getElementById('app-step-3').style.display = 'none';
       appCurrentStep = 4;
       const otpStepEl = document.getElementById('app-step-otp');
       if (otpStepEl) otpStepEl.style.display = 'block';
@@ -1434,7 +1407,7 @@ async function submitVerifiedApplication() {
     prepScore: parseFloat(document.getElementById('app-score').value),
     governorate: document.getElementById('app-gov').value,
     schoolId: document.getElementById('app-school-target').value,
-    specId: document.getElementById('app-pref-1').value
+    specId: null // Specialization assigned by school administration
   };
 
   try {
@@ -1564,12 +1537,13 @@ async function resendOtp() {
 
 function prevAppStep() {
   if (appCurrentStep === 4) {
+    // OTP -> back to step 2 directly (step 3 was removed)
     document.getElementById('app-step-otp').style.display = 'none';
-    appCurrentStep = 3;
-    document.getElementById('app-step-3').style.display = 'block';
+    appCurrentStep = 2;
+    document.getElementById('app-step-2').style.display = 'block';
     updateStepBubbles();
   } else if (appCurrentStep === 3) {
-    document.getElementById('app-step-3').style.display = 'none';
+    // step 3 is now removed, same as going back to step 2
     appCurrentStep = 2;
     document.getElementById('app-step-2').style.display = 'block';
     updateStepBubbles();

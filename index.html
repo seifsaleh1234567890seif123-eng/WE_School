@@ -783,32 +783,11 @@
 
         <div style="display: flex; gap: 0.8rem; margin-top: 1.4rem;">
           <button type="button" class="btn btn-outline" style="flex: 1;" onclick="prevAppStep()" data-i18n="modalBtnPrev">⬅️ السابق</button>
-          <button type="button" class="btn btn-primary" style="flex: 2;" onclick="nextAppStep()" data-i18n="modalBtnNextStep3">التالي: اختيار التخصص ➡️</button>
-        </div>
-      </div>
-
-      <!-- Step 3: Specialization Preferences (Featuring Digital Arc) -->
-      <div id="app-step-3" style="display: none;">
-        <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.4rem;" data-i18n="modalStep3Title">الخطوة 3: ترتيب رغبات التخصص</h3>
-        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.4rem;" data-i18n="modalStep3Sub">حدد ترتيب التخصصات المفضلة لديك</p>
-
-        <div class="calc-form-group">
-          <label data-i18n="modalPref1Label">الرغبة الأولى:</label>
-          <select id="app-pref-1"></select>
-        </div>
-
-        <div class="calc-form-group">
-          <label data-i18n="modalPref2Label">الرغبة الثانية:</label>
-          <select id="app-pref-2"></select>
-        </div>
-
-        <div id="app-form-error" style="display: none; color: #ff0055; background: rgba(255, 0, 85, 0.12); border: 1px solid #ff0055; padding: 0.8rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.9rem; text-align: center;"></div>
-
-        <div style="display: flex; gap: 0.8rem; margin-top: 1.4rem;">
-          <button type="button" class="btn btn-outline" style="flex: 1;" onclick="prevAppStep()" data-i18n="modalBtnPrev">⬅️ السابق</button>
           <button type="button" class="btn btn-cyan" id="app-submit-btn" style="flex: 2;" onclick="nextAppStep()">التالي: التحقق من البريد 📩</button>
         </div>
       </div>
+
+      <!-- Step 3 removed: Specialization assigned by school administration -->
 
       <!-- Step 4 (OTP Verification): Verify Email with 6-Digit Code -->
       <div id="app-step-otp" style="display: none; text-align: center; padding: 0.5rem 0;">
