@@ -2056,7 +2056,8 @@ const schoolHeroVideos = {
 let currentHeroVideoKey = 'hero';
 let videoControlsTimeout = null;
 
-function toggleHeroVideoPlay() {
+function toggleHeroVideoPlay(e) {
+  if (e && e.stopPropagation) e.stopPropagation();
   const vid = document.getElementById('top-hero-video');
   if (!vid) return;
 
@@ -2067,11 +2068,17 @@ function toggleHeroVideoPlay() {
   }
 }
 
-function toggleHeroVideoAudio() {
+function toggleHeroVideoAudio(forceUnmute, e) {
+  if (e && e.stopPropagation) e.stopPropagation();
   const vid = document.getElementById('top-hero-video');
   if (!vid) return;
 
-  vid.muted = !vid.muted;
+  if (forceUnmute === true) {
+    vid.muted = false;
+  } else {
+    vid.muted = !vid.muted;
+  }
+
   if (!vid.muted) {
     vid.volume = 1.0;
     vid.play().catch(() => {});
@@ -2084,6 +2091,7 @@ function updateHeroAudioUI() {
   const soundIcon = document.getElementById('vid-sound-icon');
   const soundText = document.getElementById('vid-sound-text');
   const soundBtn = document.getElementById('vid-sound-btn');
+  const unmuteBadge = document.getElementById('video-unmute-badge');
   if (!vid) return;
 
   const isMuted = vid.muted;
@@ -2103,43 +2111,39 @@ function updateHeroAudioUI() {
       soundBtn.classList.remove('active');
     }
   }
-}
 
-
-  // Guarantee audio unmuting on first user interaction if browser blocked audio autoplay
-  let userInteractedWithPage = false;
-  function armAudioOnFirstGesture() {
-    if (userInteractedWithPage) return;
-    userInteractedWithPage = true;
-    const vid = document.getElementById('top-hero-video');
-    if (vid) {
-      vid.muted = false;
-      vid.volume = 1.0;
-      updateHeroAudioUI();
+  // Update prominent unmute floating badge
+  if (unmuteBadge) {
+    if (isMuted) {
+      unmuteBadge.classList.remove('hidden');
+      const badgeText = unmuteBadge.querySelector('.unmute-badge-text');
+      if (badgeText) {
+        badgeText.textContent = currentLang === 'ar' ? 'اضغط هنا لتشغيل الصوت 🔊' : 'Tap to Unmute Audio 🔊';
+      }
+    } else {
+      unmuteBadge.classList.add('hidden');
     }
   }
-  document.addEventListener('click', armAudioOnFirstGesture, { once: true, passive: true });
-  document.addEventListener('touchstart', armAudioOnFirstGesture, { once: true, passive: true });
+}
+
+// Guarantee audio unmuting on first user click or tap anywhere on page
+let userInteractedWithPage = false;
+function armAudioOnFirstGesture() {
+  if (userInteractedWithPage) return;
+  userInteractedWithPage = true;
+  const vid = document.getElementById('top-hero-video');
+  if (vid && vid.muted) {
+    vid.muted = false;
+    vid.volume = 1.0;
+    vid.play().catch(() => {});
+    updateHeroAudioUI();
+  }
+}
+document.addEventListener('click', armAudioOnFirstGesture, { once: true, passive: true });
+document.addEventListener('touchstart', armAudioOnFirstGesture, { once: true, passive: true });
 
 function initHeroVideoPlayer() {
   const vid = document.getElementById('top-hero-video');
-  if (vid) {
-    // Enable sound by default
-    vid.muted = false;
-    vid.volume = 1.0;
-    updateHeroAudioUI();
-
-    // Attempt to play with sound, or fallback to user interaction if browser policy blocks unmuted autoplay
-    const playPromise = vid.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        // Autoplay with sound prevented by browser; allow user to click play/sound button
-        vid.muted = true;
-        vid.play().catch(() => {});
-        updateHeroAudioUI();
-      });
-    }
-  }
   const container = document.querySelector('.fullwidth-video-container');
   const controlsBar = document.getElementById('hero-video-controls');
   const centerPlay = document.getElementById('video-center-play');
@@ -2148,14 +2152,14 @@ function initHeroVideoPlayer() {
   const playBtn = document.getElementById('vid-play-btn');
   if (!vid) return;
 
-  // Auto-hide controls after 3.5s of inactivity while playing
+  // Auto-hide controls only when playing AND sound is already active (unmuted)
   const resetControlsTimer = () => {
     if (!controlsBar) return;
     controlsBar.classList.remove('controls-hidden');
     if (videoControlsTimeout) clearTimeout(videoControlsTimeout);
-    if (!vid.paused) {
+    if (!vid.paused && !vid.muted) {
       videoControlsTimeout = setTimeout(() => {
-        if (!vid.paused) {
+        if (!vid.paused && !vid.muted) {
           controlsBar.classList.add('controls-hidden');
         }
       }, 3500);
@@ -2166,7 +2170,7 @@ function initHeroVideoPlayer() {
     container.addEventListener('mousemove', resetControlsTimer);
     container.addEventListener('touchstart', resetControlsTimer, { passive: true });
     container.addEventListener('mouseleave', () => {
-      if (!vid.paused && controlsBar) {
+      if (!vid.paused && !vid.muted && controlsBar) {
         controlsBar.classList.add('controls-hidden');
       }
     });
@@ -2190,31 +2194,7 @@ function initHeroVideoPlayer() {
     if (videoControlsTimeout) clearTimeout(videoControlsTimeout);
   });
 
-  // Clicking on video toggles play/pause
-  vid.addEventListener('click', () => {
-    toggleHeroVideoPlay();
-  });
-
-  // Fallback to official CDN if local file fails to load
-  vid.addEventListener('error', () => {
-    const cdnUrl = 'https://we-ats.com/wp-content/uploads/2024/08/video-1.mp4';
-    if (vid.src !== cdnUrl) {
-      vid.src = cdnUrl;
-      vid.load();
-      vid.play().catch(() => {});
-    }
-  });
-
-  // When clicking the "فيديو المدرسة" link in navbar: ensure video plays immediately
-  document.querySelectorAll('a[href="#school-video"]').forEach(link => {
-    link.addEventListener('click', () => {
-      vid.muted = true;
-      vid.play().catch(() => {});
-    });
-  });
-
-  // Autoplay loop muted
-  vid.muted = true;
+  // Start video playback (standard muted autoplay)
   const tryAutoplay = () => {
     const playPromise = vid.play();
     if (playPromise !== undefined) {
@@ -2227,7 +2207,7 @@ function initHeroVideoPlayer() {
   };
   tryAutoplay();
 
-  // Smart GPU/Battery saver: pause video when scrolled out of view!
+  // Smart GPU/Battery saver: pause video when scrolled out of view
   if ('IntersectionObserver' in window) {
     const videoObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -2245,18 +2225,6 @@ function initHeroVideoPlayer() {
     }, { threshold: 0.15 });
     videoObserver.observe(vid);
   }
-
-  // If browser policy blocks autoplay before user gesture, play on first interaction
-  const onFirstInteraction = () => {
-    if (vid.paused) {
-      vid.muted = true;
-      tryAutoplay();
-    }
-    document.removeEventListener('click', onFirstInteraction);
-    document.removeEventListener('touchstart', onFirstInteraction);
-  };
-  document.addEventListener('click', onFirstInteraction, { once: true, passive: true });
-  document.addEventListener('touchstart', onFirstInteraction, { once: true, passive: true });
 
   updateHeroAudioUI();
 }

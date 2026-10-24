@@ -78,25 +78,33 @@
     </div>
   </header>
 
-  <!-- Top Full-Width Official School Video Hero Banner (Direct from we-ats.com) -->
+  <!-- Top Full-Width Official School Video Hero Banner -->
   <section class="top-fullwidth-video-section" id="school-video">
     <div class="fullwidth-video-container">
       <video 
         id="top-hero-video" 
+        autoplay
+        muted
         loop 
         playsinline 
         webkit-playsinline="true" 
         x5-playsinline="true" 
-        preload="metadata" 
+        preload="auto" 
         poster="assets/images/students-lab.webp" 
-        class="top-hero-video-player">
-        <source src="assets/videos/school-hero.mp4" type="video/mp4">
-        <source src="https://we-ats.com/wp-content/uploads/2024/08/video-1.mp4" type="video/mp4">
+        class="top-hero-video-player"
+        onclick="toggleHeroVideoAudio(null, event)">
+        <source src="assets/videos/school-hero.mp4?v=2" type="video/mp4">
         متصفحك لا يدعم تشغيل الفيديو المباشر.
       </video>
 
+      <!-- Prominent Tap-to-Unmute Floating Badge -->
+      <button class="video-unmute-badge" id="video-unmute-badge" onclick="toggleHeroVideoAudio(true, event)" aria-label="تشغيل صوت الفيديو">
+        <span class="unmute-badge-icon">🔊</span>
+        <span class="unmute-badge-text">اضغط هنا لتشغيل الصوت 🔊</span>
+      </button>
+
       <!-- Center Big Glowing Play Button (Displays when video is paused) -->
-      <div class="video-center-play-overlay" id="video-center-play" onclick="toggleHeroVideoPlay()">
+      <div class="video-center-play-overlay" id="video-center-play" onclick="toggleHeroVideoPlay(event)">
         <div class="center-play-circle" title="تشغيل الفيديو">
           <svg class="play-svg-icon" viewBox="0 0 24 24" fill="currentColor">
             <polygon points="6 3 20 12 6 21 6 3"></polygon>
@@ -107,15 +115,15 @@
       <!-- Minimalist Cyber Floating Controls (Sound & Play/Pause ONLY) -->
       <div class="minimal-video-controls" id="hero-video-controls">
         <!-- Play / Pause Toggle Button -->
-        <button class="vid-cyber-btn vid-play-btn" id="vid-play-btn" onclick="toggleHeroVideoPlay()" title="إيقاف / تشغيل الفيديو">
+        <button class="vid-cyber-btn vid-play-btn" id="vid-play-btn" onclick="toggleHeroVideoPlay(event)" title="إيقاف / تشغيل الفيديو">
           <span id="vid-play-icon">⏸️</span>
           <span id="vid-play-text">إيقاف الفيديو</span>
         </button>
 
         <!-- Audio Toggle Button -->
-        <button class="vid-cyber-btn vid-sound-btn" id="vid-sound-btn" onclick="toggleHeroVideoAudio()" title="تشغيل / كتم الصوت">
-          <span id="vid-sound-icon">🔊</span>
-            <span id="vid-sound-text">كتم الصوت</span>
+        <button class="vid-cyber-btn vid-sound-btn" id="vid-sound-btn" onclick="toggleHeroVideoAudio(null, event)" title="تشغيل الصوت">
+          <span id="vid-sound-icon">🔇</span>
+          <span id="vid-sound-text">تشغيل الصوت</span>
         </button>
       </div>
     </div>
