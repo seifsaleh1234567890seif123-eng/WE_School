@@ -1438,10 +1438,8 @@ ul {
 }
 
 .admission-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 3.5rem;
-  align-items: flex-start;
+  max-width: 860px;
+  margin: 0 auto;
 }
 
 .roadmap-list {

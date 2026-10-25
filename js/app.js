@@ -36,7 +36,7 @@ function checkAdmissionWindow() {
 
 // ==========================================================================
 // WE APPLIED TECHNOLOGY SCHOOLS - Interactive Application Logic
-// 100% Bilingual Translation Engine (Arabic / English), Digital Arc,
+// 100% Bilingual Translation Engine (Arabic / English), Digital Arts,
 // Filters, Dynamic Sections, Calculator, Modals & Visual Safety
 // ==========================================================================
 
@@ -108,7 +108,7 @@ const i18n = {
     heroCardImgText: "🏫 معامل متطورة وأحدث أجهزة التكنولوجيا",
     heroCardTitle: "تخصصات تواكب الثورة الصناعية الرابعة",
     heroCardDesc: "دراسة عملية متقدمة تجمع بين مناهج وزارة التربية والتعليم والتدريب الميداني داخل سنترالات ومواقع الشركة المصرية للاتصالات WE.",
-    heroPillArc: "ديجيتال ارك",
+    heroPillArc: "ديجيتال ارت",
     heroPillCyber: "الأمن السيبراني",
     heroPillDev: "تطوير البرمجيات",
     heroPillAi: "الذكاء الاصطناعي",
@@ -233,7 +233,7 @@ const i18n = {
     modalBtnClose: "تم، إغلاق النافذة",
     
     // Footer Specialties
-    footerSpecArc: "ديجيتال ارك (العمارة الرقمية)",
+    footerSpecArc: "ديجيتال ارت (الفنون الرقمية)",
     footerSpecCyber: "الشبكات والأمن السيبراني",
     footerSpecWeb: "تطوير المواقع والبرمجيات",
     footerSpecAi: "الذكاء الاصطناعي وتحليل البيانات",
@@ -301,13 +301,13 @@ const i18n = {
     heroBadge: "Egypt's #1 Applied Tech Academy 🇪🇬",
     heroTitlePrefix: "Empowering Future",
     heroTitleTech: "Digital Leaders",
-    heroTitleSuffix: "in AI, Cybersecurity & Digital Architecture",
+    heroTitleSuffix: "in AI, Cybersecurity & Digital Arts",
     heroDesc: "Premier technical model schools with international accreditations, born from a strategic partnership between MCIT, MOETE, and Telecom Egypt (WE). Equipping youth for world-class tech careers and engineering universities.",
     heroCardBadge: "⚡ 3-Year Internationally Accredited System",
     heroCardImgText: "🏫 State-of-the-Art Computing & Engineering Labs",
     heroCardTitle: "Majors Crafted for Industry 4.0",
     heroCardDesc: "Advanced practical learning combining Ministry of Education curricula with hands-on field internships inside Telecom Egypt sites.",
-    heroPillArc: "Digital Arc",
+    heroPillArc: "Digital Arts",
     heroPillCyber: "Cybersecurity",
     heroPillDev: "Software Dev",
     heroPillAi: "AI & Data",
@@ -336,7 +336,7 @@ const i18n = {
     // Specializations
     specsTag: "Future-Ready Career Tracks",
     specsTitle: "5 High-Demand Tech Specializations",
-    specsSubtitle: "Cutting-edge curricula crafted with senior university professors and global technology industry leaders in Digital Architecture, AI, and Cybersecurity.",
+    specsSubtitle: "Cutting-edge curricula crafted with senior university professors and global technology industry leaders in Digital Arts, AI, and Cybersecurity.",
     topicsCovered: "Core Curriculum & Training Modules:",
     careerOpportunities: "Career & Job Opportunities:",
     industryCerts: "Certified Global Credentials:",
@@ -432,7 +432,7 @@ const i18n = {
     modalBtnClose: "Done, Close Window",
     
     // Footer Specialties
-    footerSpecArc: "Digital Arc (Architecture)",
+    footerSpecArc: "Digital Arts & Multimedia",
     footerSpecCyber: "Networks & Cybersecurity",
     footerSpecWeb: "Web & Software Development",
     footerSpecAi: "AI & Data Analytics",
@@ -497,7 +497,7 @@ const comparisonData = {
   en: [
     {
       criteria: "Curriculum & Language",
-      we: "International English curricula in modern Digital Architecture, AI & Tech",
+      we: "International English curricula in modern Digital Arts, AI & Tech",
       thanawya: "Traditional theoretical curricula relying on rote memorization",
       vocational: "Outdated paper-based textbooks detached from market needs"
     },
@@ -586,8 +586,8 @@ const faqData = {
       a: "نعم بالتأكيد! يحصل خريج مدارس WE على دبلوم فني تكنولوجي متقدم يؤهله مباشرة للالتحاق بكليات الهندسة (أقسام العمارة والاتصالات والمدني) وكليات الحاسبات والذكاء الاصطناعي (بعد اجتياز المعادلة بنجاح)، وكذلك الالتحاق المباشر بجميع الجامعات والكليات والمعاهد التكنولوجية في مصر دون عوائق."
     },
     {
-      q: "ما هو تخصص ديجيتال ارك (العمارة الرقمية والمدن الذكية)؟",
-      a: "هو تخصص تكنولوجي حديث يجمع بين التصميم المعماري الرقمي ثلاثي الأبعاد، ونمذجة معلومات المباني (BIM)، وتكنولوجيا التوأم الرقمي (Digital Twin)، وتصميم المدن والمباني الذكية المستدامة، مع تدريب عملي مكثف على برامج Autodesk Revit وUnreal Engine."
+      q: "ما هو تخصص ديجيتال ارت (الفنون الرقمية والوسائط المتعددة)؟",
+      a: "هو تخصص تكنولوجي إبداعي حديث يجمع بين التصميم الرقمي ثلاثي الأبعاد، والرسوم المتحركة، والمؤثرات البصرية، وتصميم واجهات وتجربة المستخدم (UI/UX)، وصناعة المحتوى الرقمي المتقدم مع تدريب مكثف على برامج Adobe وBlender."
     },
     {
       q: "ما هي المصروفات الدراسية لمدارس WE؟",
@@ -612,8 +612,8 @@ const faqData = {
       a: "Absolutely yes! WE ATS graduates receive an accredited advanced technical diploma qualifying them directly for Faculties of Engineering (Architecture, Communications, Civil), Computer Science & AI (after passing the standard bridge exam), and direct unconditional entry into all Technological Universities across Egypt."
     },
     {
-      q: "What is the Digital Arc (Digital Architecture & Smart Cities) specialization?",
-      a: "It is a cutting-edge technological track merging 3D digital architectural modeling, Building Information Modeling (BIM), Smart City Digital Twins, and sustainable computational design, with intensive practical training on Autodesk Revit and Unreal Engine."
+      q: "What is the Digital Arts & Multimedia specialization?",
+      a: "It is a cutting-edge creative technology track combining 3D digital design, animation, visual effects (VFX), UI/UX interface design, and advanced multimedia production with hands-on training on Adobe Suite and Blender."
     },
     {
       q: "What are the tuition fees for WE Applied Technology Schools?",
@@ -944,7 +944,7 @@ function renderSchoolsGrid() {
   const t = i18n[currentLang];
 
   const specNamesMap = {
-    'digital-arc': { ar: 'ديجيتال ارك', en: 'Digital Arc' },
+    'digital-arc': { ar: 'ديجيتال ارت', en: 'Digital Arts' },
     'networks': { ar: 'الأمن السيبراني', en: 'Cybersecurity' },
     'web': { ar: 'البرمجيات', en: 'Software Dev' },
     'ai': { ar: 'الذكاء الاصطناعي', en: 'AI & Data' },
@@ -991,22 +991,18 @@ function renderSchoolsGrid() {
       <div class="school-card">
         <div>
           <div class="school-card-top">
-            <span class="gov-pill">📍 ${gov}</span>
+            <span class="gov-pill">${gov}</span>
             <span style="font-size: 0.76rem; color: var(--text-muted); font-weight: 600;">${region}</span>
           </div>
           <h3 class="school-name"><bdi>${name}</bdi></h3>
           <p class="school-address">
-            <span style="flex-shrink: 0;">🏛️</span>
             <span>${address}</span>
           </p>
-          <div class="school-specialties-tags">
-            ${specs.map(spec => `<span class="spec-mini-tag">${spec}</span>`).join('')}
-          </div>
         </div>
 
         <div class="school-actions">
           <a href="${school.googleMaps}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
-            🗺️ ${t.btnDirections}
+            ${t.btnDirections}
           </a>
           <button class="btn btn-primary btn-sm" onclick="openApplicationModal('${school.id}')">
             ${t.btnApplyNow}
@@ -1490,7 +1486,7 @@ async function submitVerifiedApplication() {
       schoolNameEn: schoolObj ? schoolObj.nameEn : schoolName,
       prepScore: payload.prepScore,
       specializationAr: 'تكنولوجيا الاتصالات وهندسة البرمجيات',
-      specializationEn: 'Digital Architecture & Software',
+      specializationEn: 'Digital Arts & Software',
       statusMeta: {
         color: '#00E676',
         labelAr: 'قيد المراجعة المبدئية',
@@ -1758,8 +1754,8 @@ const sampleQuestions = [
     qEn: "What core technology is used for 3D digital architectural modeling and smart building simulation?",
     options: ["BIM & Digital Twins", "FTP", "DNS", "SMS"],
     correct: 0,
-    explainAr: "تقنية BIM (Building Information Modeling) والتوأم الرقمي هي الأساس في تخصص ديجيتال ارك.",
-    explainEn: "BIM (Building Information Modeling) and Digital Twins are the foundation of Digital Architecture."
+    explainAr: "تقنية BIM (Building Information Modeling) والتوأم الرقمي هي الأساس في التصميم المعماري والتكنولوجي الحديث.",
+    explainEn: "BIM (Building Information Modeling) and Digital Twins are the foundation of modern digital design."
   },
   {
     qAr: "إذا كان أحمد يتحرك بسرعة 10 كم/ساعة، كم ثانية يحتاجها لقطع مسافة 100 متر؟",
@@ -2264,7 +2260,7 @@ const curriculumData = {
         "<b>فيزياء (Physics)</b>",
         "<b>لغة إنجليزية (English)</b>",
         "<b>تكنولوجيا المعلومات (IT)</b>",
-        "<b>ديجيتال ارك (Digital Arc)</b>",
+        "<b>ديجيتال ارت (Digital Art)</b>",
         "<b>ريادة أعمال (Entrepreneurship)</b>",
         "<b>دراسات اجتماعية</b>",
         "<b>مشروع كابستون (Capstone Project)</b>"
@@ -2322,7 +2318,7 @@ const curriculumData = {
         "<b>Physics</b>",
         "<b>English Language</b>",
         "<b>Information Technology (IT)</b>",
-        "<b>Digital Arc</b>",
+        "<b>Digital Art</b>",
         "<b>Entrepreneurship</b>",
         "<b>Social Studies</b>",
         "<b>Capstone Project</b>"

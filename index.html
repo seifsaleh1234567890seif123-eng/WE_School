@@ -197,9 +197,6 @@
           <button class="btn btn-outline" onclick="openTrackingModal()">
             <span data-i18n="btnTrackApp">استعلم عن حالة قبولك 🔍</span>
           </button>
-          <a href="#admission-calc" class="btn btn-cyan">
-            <span data-i18n="btnCheckEligibility">احسب فرصتك للقبول 🎯</span>
-          </a>
           <a href="#school-video" class="btn btn-outline" style="border-color: var(--we-purple-light); color: #fff;">
             <span data-i18n="btnWatchVideo">فيديو المدرسة 🎬</span>
           </a>
@@ -260,8 +257,8 @@
           <!-- 4 Specialization Pills (100% Translated & Overflow-Proof) -->
           <div class="spec-mini-grid">
             <div class="spec-mini-pill" onclick="selectSpecialization('digital-arc'); document.getElementById('specializations').scrollIntoView({behavior:'smooth'});" style="cursor: pointer;">
-              <img src="assets/images/spec-telecom.png" alt="Digital Arc">
-              <span data-i18n="heroPillArc">ديجيتال ارك</span>
+              <img src="assets/images/spec-telecom.png" alt="Digital Arts">
+              <span data-i18n="heroPillArc">ديجيتال ارت</span>
             </div>
             <div class="spec-mini-pill" onclick="selectSpecialization('networks'); document.getElementById('specializations').scrollIntoView({behavior:'smooth'});" style="cursor: pointer;">
               <img src="assets/images/spec-networks.png" alt="Cybersecurity">
@@ -455,47 +452,10 @@
             </div>
           </div>
         </div>
-
-        <!-- Interactive Calculator Card -->
-        <div class="calc-card" id="admission-calc">
-          <div style="display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.4rem;">
-            <span style="font-size: 1.8rem;">🧮</span>
-            <div>
-              <h3 style="font-size: 1.35rem; font-weight: 800;" data-i18n="calcTitle">حاسبة فرصة القبول والتنسيق الذكية</h3>
-              <p style="font-size: 0.82rem; color: var(--text-secondary);" data-i18n="calcSubtitle">ادخل بياناتك للتأكد من انطباق الشروط فورياً</p>
-            </div>
-          </div>
-
-          <form id="eligibility-calc-form">
-            <div class="calc-form-group">
-              <label for="calc-score-input" data-i18n="calcScoreLabel">مجموعك في الشهادة الإعدادية (من 280):</label>
-              <input type="number" id="calc-score-input" min="0" max="280" placeholder="مثال: 250" required>
-            </div>
-
-            <div class="calc-form-group">
-              <label for="calc-gov-select" data-i18n="calcGovLabel">محافظتك:</label>
-              <select id="calc-gov-select" required></select>
-            </div>
-
-            <div class="calc-form-group">
-              <label for="calc-age-input" data-i18n="calcAgeLabel">عمرك في أول أكتوبر:</label>
-              <input type="number" id="calc-age-input" min="13" max="22" value="15" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary" style="width: 100%;" data-i18n="calcBtn">
-              تحقق من نتيجة قبولك الآن 🎯
-            </button>
-          </form>
-
-          <!-- Result Diagnostic Display -->
-          <div id="calc-result-box" class="calc-result-box"></div>
-        </div>
       </div>
     </div>
   </section>
 
-
-  <!-- Academic Journey & Curricula (Year 1, 2, 3) -->
   <!-- Academic Journey & Curricula (Year 1, 2, 3) -->
   <section class="curriculum-section" id="curriculum">
     <div class="container" id="curriculum-container">
@@ -678,7 +638,7 @@
         </div>
       </div>
 
-      <!-- Step 3: Specialization Preferences (Featuring Digital Arc) -->
+      <!-- Step 3: Specialization Preferences (Featuring Digital Arts) -->
       <div id="app-step-3" style="display: none;">
         <h3 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 0.4rem;" data-i18n="modalStep3Title">الخطوة 3: ترتيب رغبات التخصص</h3>
         <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.4rem;" data-i18n="modalStep3Sub">حدد ترتيب التخصصات المفضلة لديك</p>
@@ -863,7 +823,7 @@
         <div class="footer-col">
           <h4 data-i18n="footerSpecialties">التخصصات التقنية</h4>
           <ul class="footer-links">
-            <li><a href="#specializations" onclick="selectSpecialization('digital-arc')" data-i18n="footerSpecArc">ديجيتال ارك (العمارة الرقمية)</a></li>
+            <li><a href="#specializations" onclick="selectSpecialization('digital-arc')" data-i18n="footerSpecArc">ديجيتال ارت (الفنون الرقمية والوسائط)</a></li>
             <li><a href="#specializations" onclick="selectSpecialization('networks')" data-i18n="footerSpecCyber">الشبكات والأمن السيبراني</a></li>
             <li><a href="#specializations" onclick="selectSpecialization('web')" data-i18n="footerSpecWeb">تطوير المواقع والبرمجيات</a></li>
             <li><a href="#specializations" onclick="selectSpecialization('ai')" data-i18n="footerSpecAi">الذكاء الاصطناعي وتحليل البيانات</a></li>
