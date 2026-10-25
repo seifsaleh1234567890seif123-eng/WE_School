@@ -2221,25 +2221,71 @@ select option:checked {
 
 .social-links {
   display: flex;
-  gap: 0.7rem;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 0.5rem;
 }
 
 .social-btn {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  display: flex;
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   color: #fff;
-  transition: var(--transition);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
 }
 
-.social-btn:hover {
-  background: var(--we-purple);
-  border-color: var(--we-gold);
+.social-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  transition: transform 0.25s ease;
+}
+
+.social-btn:hover svg {
+  transform: scale(1.15);
+}
+
+/* Facebook */
+.social-btn.social-fb:hover {
+  background: #1877F2;
+  border-color: #1877F2;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(24, 119, 242, 0.7);
+  transform: translateY(-3px);
+}
+
+/* Instagram */
+.social-btn.social-ig:hover {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  border-color: #d6249f;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(214, 36, 159, 0.7);
+  transform: translateY(-3px);
+}
+
+/* YouTube */
+.social-btn.social-yt:hover {
+  background: #FF0000;
+  border-color: #FF0000;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+  transform: translateY(-3px);
+}
+
+/* TikTok */
+.social-btn.social-tk:hover {
+  background: #010101;
+  border-color: #00F2FE;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.7), 0 0 20px rgba(254, 44, 85, 0.5);
   transform: translateY(-3px);
 }
 
